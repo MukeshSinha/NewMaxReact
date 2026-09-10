@@ -12,10 +12,19 @@ import {
   ShieldCheck,
   UserPlus,
   ArrowLeftRight,
-  Award,
   CalendarCheck,
   CheckCircle2,
-  UserCog
+  UserCog,
+  BarChart3,
+  Banknote,
+  FileText,
+  CalendarOff,
+  AlertCircle,
+  RotateCw,
+  CalendarRange,
+  UserCheck,
+  FileUp,
+  ArrowRight
 } from 'lucide-react';
 import { useAppStore } from '../../store/appStore';
 
@@ -36,7 +45,7 @@ interface MenuItem {
 export const Sidebar: React.FC = () => {
   const { sidebarOpen } = useAppStore();
   const location = useLocation();
-  const [openSubmenu, setOpenSubmenu] = useState<string | null>('Employees');
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>('Time Office');
 
   const toggleSubmenu = (title: string) => {
     setOpenSubmenu(openSubmenu === title ? null : title);
@@ -44,7 +53,7 @@ export const Sidebar: React.FC = () => {
 
   const menuItems: MenuItem[] = [
     {
-      title: 'Dashboards',
+      title: 'Dashboard',
       icon: LayoutDashboard,
       children: [
         { title: 'Admin Dashboard', path: '/dashboard/admin' },
@@ -78,41 +87,53 @@ export const Sidebar: React.FC = () => {
       ],
     },
     {
-      title: 'Contractor Master',
-      icon: Building2,
-      children: [
-        { title: 'Contractor Registration', path: '/contractor/registration' },
-        { title: 'Import Employees Excel', path: '/masters/import-employees' },
-      ],
-    },
-    {
       title: 'Time Office',
       icon: Clock,
       children: [
         { title: 'Attendance Process', path: '/timeoffice/punch-process', icon: CalendarCheck },
+        { title: 'Leave Posting', path: '/timeoffice/leaves', icon: CalendarOff },
+        { title: 'Weekoff Transfer', path: '/timeoffice/weekoff-transfer', icon: ArrowLeftRight },
+        { title: 'Forget Punch', path: '/timeoffice/forget-punch', icon: AlertCircle },
+        { title: '', path: '', isDivider: true },
+        { title: 'Shift Rotation', path: '/timeoffice/shift-rotation', icon: RotateCw },
+        { title: 'Shift Roaster', path: '/timeoffice/shift-roaster', icon: CalendarRange },
+        { title: 'Employee Shift', path: '/timeoffice/employee-shift', icon: UserCheck },
+        { title: '', path: '', isDivider: true },
+        { title: 'Import Shift', path: '/timeoffice/import-shift', icon: FileUp },
+        { title: 'Attendance Report', path: '/timeoffice/reports', icon: FileSpreadsheet },
         { title: 'Attendance Verification', path: '/timeoffice/verify', icon: CheckCircle2 },
-        { title: 'Leave Posting', path: '/timeoffice/leaves' },
-        { title: 'Import Shift Roster', path: '/timeoffice/import-shift' },
       ],
     },
     {
-      title: 'Attendance Reports',
-      icon: FileSpreadsheet,
+      title: 'Charts',
+      icon: BarChart3,
       children: [
-        { title: 'Reports Hub', path: '/timeoffice/reports' },
-        { title: 'Muster Roll Report', path: '/timeoffice/reports/muster-roll' },
-        { title: 'Daily Absenteeism', path: '/timeoffice/reports/absenteeism' },
-        { title: 'Plan vs Actual', path: '/timeoffice/reports/plan-vs-actual' },
-        { title: 'Dept Manpower API', path: '/timeoffice/reports/dept-manpower' },
+        { title: 'Manpower Analytics', path: '/charts/manpower' },
+        { title: 'Attendance Trends', path: '/charts/attendance' },
+      ],
+    },
+    {
+      title: 'Salary',
+      icon: Banknote,
+      children: [
+        { title: 'Salary Slip / Calculation', path: '/salary/calculation' },
+        { title: 'Monthly Wage Register', path: '/salary/wage-register' },
       ],
     },
     {
       title: 'User Manage',
-      icon: Settings,
+      icon: UserCog,
       children: [
         { title: 'Organization Setup', path: '/settings/organization', icon: UserCog },
         { title: 'Dojo Master Criteria', path: '/masters/dojo' },
         { title: 'Change Password', path: '/user/change-password', icon: ShieldCheck },
+      ],
+    },
+    {
+      title: 'Documentation',
+      icon: FileText,
+      children: [
+        { title: 'API & User Manual', path: '/documentation/manual' },
       ],
     },
   ];
@@ -120,18 +141,20 @@ export const Sidebar: React.FC = () => {
   if (!sidebarOpen) return null;
 
   return (
-    <aside className="w-64 bg-slate-900/90 backdrop-blur-xl border-r border-slate-800 text-slate-300 flex flex-col h-screen sticky top-0 z-30 transition-all duration-300">
+    <aside className="w-64 bg-slate-900/95 backdrop-blur-xl border-r border-slate-800 text-slate-300 flex flex-col h-screen sticky top-0 z-30 transition-all duration-300 shadow-2xl">
       {/* Brand Header */}
       <div className="p-4 border-b border-slate-800 flex items-center gap-3">
-        <img src="/logo.svg" alt="MaxPay Logo" className="h-9 object-contain" />
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-md shadow-indigo-600/30">
+          <Clock className="w-5 h-5 text-white" />
+        </div>
         <div>
-          <h1 className="font-bold text-white tracking-wide text-sm leading-tight">MaxPay</h1>
-          <span className="text-[11px] text-indigo-400 font-medium">Contractor Management</span>
+          <h1 className="font-bold text-white tracking-wide text-sm leading-tight">MaxPay Contractor UI</h1>
+          <span className="text-[10px] text-indigo-400 font-semibold tracking-wider uppercase">Time & Attendance</span>
         </div>
       </div>
 
       {/* Menu List */}
-      <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+      <nav className="flex-1 overflow-y-auto p-3 space-y-1 custom-scrollbar">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isSubOpen = openSubmenu === item.title;
@@ -141,39 +164,45 @@ export const Sidebar: React.FC = () => {
             <div key={item.title} className="space-y-1">
               <button
                 onClick={() => toggleSubmenu(item.title)}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${hasActiveChild || isSubOpen
-                    ? 'bg-slate-800/80 text-indigo-400 font-semibold'
-                    : 'hover:bg-slate-800/40 text-slate-300 hover:text-white'
-                  }`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  hasActiveChild || isSubOpen
+                    ? 'bg-slate-800/90 text-indigo-400 font-semibold shadow-inner'
+                    : 'hover:bg-slate-800/50 text-slate-300 hover:text-white'
+                }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${hasActiveChild ? 'text-indigo-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${hasActiveChild || isSubOpen ? 'text-indigo-400' : 'text-slate-400'}`} />
                   <span>{item.title}</span>
                 </div>
-                {isSubOpen ? <ChevronDown className="w-4 h-4 text-indigo-400" /> : <ChevronRight className="w-4 h-4 text-slate-500" />}
+                {isSubOpen ? (
+                  <ChevronDown className="w-4 h-4 text-indigo-400 transition-transform duration-200" />
+                ) : (
+                  <ChevronRight className="w-4 h-4 text-slate-500 transition-transform duration-200" />
+                )}
               </button>
 
               {/* Submenu Dropdown */}
               {isSubOpen && item.children && (
-                <div className="pl-9 pr-2 py-1 space-y-1 border-l-2 border-slate-800 ml-5">
+                <div className="pl-6 pr-1 py-1 space-y-0.5 border-l-2 border-indigo-900/40 ml-4">
                   {item.children.map((child, cIdx) => {
                     if (child.isDivider) {
                       return <div key={`div-${cIdx}`} className="my-1.5 border-t border-slate-800/80" />;
                     }
-                    const ChildIcon = child.icon;
                     return (
                       <NavLink
                         key={child.path}
                         to={child.path}
                         className={({ isActive }) =>
-                          `flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-all ${isActive
-                            ? 'bg-indigo-600 text-white font-semibold shadow-md shadow-indigo-600/30'
-                            : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                          `flex items-center gap-2 px-2.5 py-1.5 rounded-md text-xs font-medium transition-all ${
+                            isActive
+                              ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-semibold shadow-md shadow-indigo-600/30'
+                              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
                           }`
                         }
                       >
-                        {ChildIcon && <ChildIcon className="w-3.5 h-3.5" />}
-                        <span>{child.title}</span>
+                        {/* Right arrow bullet matching legacy design */}
+                        <ArrowRight className="w-3 h-3 text-indigo-400/80 shrink-0" />
+                        <span className="truncate">{child.title}</span>
                       </NavLink>
                     );
                   })}
@@ -185,9 +214,11 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       {/* Footer Info */}
-      <div className="p-3 border-t border-slate-800/80 text-center text-[11px] text-slate-500">
-        Maxpay Contractor UI v2.0
+      <div className="p-3 border-t border-slate-800/80 text-center text-[11px] text-slate-500 flex items-center justify-between px-4">
+        <span>Maxpay Contractor UI</span>
+        <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-950/60 text-indigo-400 border border-indigo-800/40 font-mono">v2.0</span>
       </div>
     </aside>
   );
 };
+

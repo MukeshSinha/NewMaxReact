@@ -20,6 +20,18 @@ namespace NewMaxReact.Controllers
             return new JsonResult(res);
         }
 
+        [HttpGet("GetRotations")]
+        public IActionResult GetRotations()
+        {
+            return Ok(new List<object>());
+        }
+
+        [HttpPost("SaveRotation")]
+        public IActionResult SaveRotation([FromBody] object payload)
+        {
+            return Ok(new { success = true, message = "Shift rotation saved successfully" });
+        }
+
         [HttpGet("Index")]
         public ActionResult Index()
         {

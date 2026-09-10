@@ -17,6 +17,7 @@ namespace NewMaxReact.Controllers
 
         [HttpPost("Punchprocessing")]
         [HttpPost("ProcessPunches")]
+        [HttpPost("PunchProcess")]
         public IActionResult Punchprocessing([FromBody] PunchProcessRequest request)
         {
             return new JsonResult(_att.PunchProcess(request));

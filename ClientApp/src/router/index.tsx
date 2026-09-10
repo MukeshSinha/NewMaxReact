@@ -24,6 +24,11 @@ import { AttendanceVerifyPage } from '../pages/timeoffice/AttendanceVerifyPage';
 import { AttendanceReportHub } from '../pages/timeoffice/AttendanceReportHub';
 import { LeaveRequestPage } from '../pages/timeoffice/LeaveRequestPage';
 import { ImportShiftRosterPage } from '../pages/timeoffice/ImportShiftRosterPage';
+import { WeekoffTransferPage } from '../pages/timeoffice/WeekoffTransferPage';
+import { ForgetPunchPage } from '../pages/timeoffice/ForgetPunchPage';
+import { ShiftRotationPage } from '../pages/timeoffice/ShiftRotationPage';
+import { ShiftRoasterPage } from '../pages/timeoffice/ShiftRoasterPage';
+import { EmployeeShiftPage } from '../pages/timeoffice/EmployeeShiftPage';
 import { ChangePasswordPage } from '../pages/usermanage/ChangePasswordPage';
 
 import { ImportDojosPage } from '../pages/employee/ImportDojosPage';
@@ -94,13 +99,61 @@ export const AppRouter: React.FC = () => {
         <Route path="masters/dojo" element={<DojoMasterPage />} />
         <Route path="masters/import-employees" element={<ImportEmployeesPage />} />
 
-        {/* Time Office */}
+        {/* ---------------------------------------------------------------- */}
+        {/* TIME OFFICE - 10 Menus Exactly Matching Legacy & User Screenshot */}
+        {/* ---------------------------------------------------------------- */}
+        {/* 1. Attendance Process */}
         <Route path="timeoffice/punch-process" element={<PunchProcessPage />} />
-        <Route path="timeoffice/verify" element={<AttendanceVerifyPage />} />
+        <Route path="TimeOffice/AttendanceProcess/PunchProcess" element={<PunchProcessPage />} />
+
+        {/* 2. Leave Posting */}
+        <Route path="timeoffice/leaves" element={<LeaveRequestPage />} />
+        <Route path="TimeOffice/EmployeeLeaves/LeaveRequest" element={<LeaveRequestPage />} />
+
+        {/* 3. Weekoff Transfer */}
+        <Route path="timeoffice/weekoff-transfer" element={<WeekoffTransferPage />} />
+
+        {/* 4. Forget Punch */}
+        <Route path="timeoffice/forget-punch" element={<ForgetPunchPage />} />
+
+        {/* 5. Shift Rotation */}
+        <Route path="timeoffice/shift-rotation" element={<ShiftRotationPage />} />
+
+        {/* 6. Shift Roaster */}
+        <Route path="timeoffice/shift-roaster" element={<ShiftRoasterPage />} />
+        <Route path="timeoffice/shift-roster" element={<ShiftRoasterPage />} />
+
+        {/* 7. Employee Shift */}
+        <Route path="timeoffice/employee-shift" element={<EmployeeShiftPage />} />
+
+        {/* 8. Import Shift */}
+        <Route path="timeoffice/import-shift" element={<ImportShiftRosterPage />} />
+        <Route path="TimeOffice/Shift/ImportShiftRoster" element={<ImportShiftRosterPage />} />
+
+        {/* 9. Attendance Report */}
         <Route path="timeoffice/reports" element={<AttendanceReportHub />} />
         <Route path="timeoffice/reports/:type" element={<AttendanceReportHub />} />
-        <Route path="timeoffice/leaves" element={<LeaveRequestPage />} />
-        <Route path="timeoffice/import-shift" element={<ImportShiftRosterPage />} />
+        <Route path="TimeOffice/AttendanceReportLayout/AttendanceReportLayout" element={<AttendanceReportHub />} />
+        <Route path="TimeOffice/AttendanceReportLayout/ShiftWiseAttendance" element={<AttendanceReportHub reportType="ShiftWiseAttendance" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/DailyDeptCategoryWiseAttendance" element={<AttendanceReportHub reportType="DailyDeptCategoryWiseAttendance" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/DepartmentwiseApiManpower" element={<AttendanceReportHub reportType="DepartmentwiseApiManpower" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/PeriodicApiManpower" element={<AttendanceReportHub reportType="PeriodicApiManpower" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/ShiftwisePlanVsActual" element={<AttendanceReportHub reportType="ShiftwisePlanVsActual" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/GetMusterRoll" element={<AttendanceReportHub reportType="GetMusterRoll" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/DailyArrivalReport" element={<AttendanceReportHub reportType="DailyArrivalReport" />} />
+        <Route path="TimeOffice/AttendanceReportLayout/IndividualAttendance" element={<AttendanceReportHub reportType="IndividualAttendance" />} />
+        <Route path="EmpAttendance/DateWiseManpower" element={<AttendanceReportHub reportType="DateWiseManpower" />} />
+
+        {/* 10. Attendance Verification */}
+        <Route path="timeoffice/verify" element={<AttendanceVerifyPage />} />
+        <Route path="TimeOffice/DeptVerification/AttendanceVerifyList" element={<AttendanceVerifyPage />} />
+
+        {/* Charts, Salary, Documentation secondary routes */}
+        <Route path="charts/manpower" element={<AdminDashboard />} />
+        <Route path="charts/attendance" element={<AttendanceReportHub />} />
+        <Route path="salary/calculation" element={<AttendanceReportHub />} />
+        <Route path="salary/wage-register" element={<AttendanceReportHub />} />
+        <Route path="documentation/manual" element={<OrgSetupPage />} />
 
         {/* User Manage */}
         <Route path="user/change-password" element={<ChangePasswordPage />} />
@@ -110,3 +163,4 @@ export const AppRouter: React.FC = () => {
     </Routes>
   );
 };
+

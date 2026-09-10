@@ -13,13 +13,36 @@ namespace NewMaxReact.Services
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[2];
-                param[0] = DataLayer.AddParameter("@ProcessDate", punchreq?.ProcessDate ?? "", SqlDbType.NVarChar, 20);
-                param[1] = DataLayer.AddParameter("@ShiftCode", punchreq?.ShiftCode ?? "ALL", SqlDbType.NVarChar, 10);
-                DataTable dtbl = DataLayer.ExecuteDbProcedure("[sp_AttendancePunchProcessing]", param);
-                if (dtbl != null && dtbl.Rows.Count > 0)
+                if (punchreq?.empcode != null && punchreq.empcode.Count > 0)
                 {
-                    return Convert.ToInt32(dtbl.Rows[0][0] ?? 1);
+                    DataTable dtbl = new DataTable();
+                    dtbl.Columns.Add("cd", typeof(string));
+                    dtbl.Columns.Add("cardno", typeof(string));
+                    foreach (string cd in punchreq.empcode)
+                    {
+                        DataRow dr = dtbl.NewRow();
+                        dr["cd"] = cd;
+                        dr["cardno"] = cd;
+                        dtbl.Rows.Add(dr);
+                    }
+                    SqlParameter[] param = new SqlParameter[4];
+                    param[0] = DataLayer.AddParameter("@EmpCdpub", "1001", SqlDbType.NVarChar, 10);
+                    param[1] = DataLayer.AddParameter("@AttDatepub", punchreq.FromDt != default ? punchreq.FromDt : DateTime.Today, SqlDbType.SmallDateTime, 10);
+                    param[2] = DataLayer.AddParameter("@AttDatepub1", punchreq.UptoDt != default ? punchreq.UptoDt : DateTime.Today, SqlDbType.SmallDateTime, 10);
+                    param[3] = DataLayer.AddParameter("@EmpList", dtbl, SqlDbType.Structured, 10);
+                    DataTable Dtbl = DataLayer.ExecuteDbProcedure("[PunchProcess]", param);
+                    return Dtbl != null ? Dtbl.Rows.Count : 1;
+                }
+                else
+                {
+                    SqlParameter[] param = new SqlParameter[2];
+                    param[0] = DataLayer.AddParameter("@ProcessDate", punchreq?.ProcessDate ?? "", SqlDbType.NVarChar, 20);
+                    param[1] = DataLayer.AddParameter("@ShiftCode", punchreq?.ShiftCode ?? "ALL", SqlDbType.NVarChar, 10);
+                    DataTable dtbl = DataLayer.ExecuteDbProcedure("[sp_AttendancePunchProcessing]", param);
+                    if (dtbl != null && dtbl.Rows.Count > 0)
+                    {
+                        return Convert.ToInt32(dtbl.Rows[0][0] ?? 1);
+                    }
                 }
             }
             catch (Exception ex)

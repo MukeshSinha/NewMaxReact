@@ -19,6 +19,9 @@ namespace NewMaxReact.Models
 
     public class PunchProcessRequest
     {
+        public List<string>? empcode { get; set; }
+        public DateTime FromDt { get; set; }
+        public DateTime UptoDt { get; set; }
         public string ProcessDate { get; set; } = string.Empty;
         public string ShiftCode { get; set; } = "ALL";
     }
