@@ -6,6 +6,7 @@ using System.IO;
 
 namespace NewMaxReact.Services
 {
+    //
     public class DataLayer
     {
         public IConfiguration GetConfiguration()
