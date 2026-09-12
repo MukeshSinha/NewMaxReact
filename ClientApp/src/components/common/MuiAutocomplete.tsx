@@ -54,7 +54,7 @@ export const MuiAutocomplete: React.FC<MuiAutocompleteProps> = ({
   onChange,
   placeholder,
   required,
-  themeMode = 'dark',
+  themeMode = 'light',
   className,
   minWidth,
 }) => {

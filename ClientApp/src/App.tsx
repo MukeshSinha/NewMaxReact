@@ -18,16 +18,20 @@ const queryClient = new QueryClient({
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#6366f1',
+      main: '#4f46e5',
     },
     secondary: {
-      main: '#a855f7',
+      main: '#7c3aed',
     },
     background: {
-      default: '#0f172a',
-      paper: '#1e293b',
+      default: '#f8fafc',
+      paper: '#ffffff',
+    },
+    text: {
+      primary: '#0f172a',
+      secondary: '#475569',
     },
   },
   typography: {

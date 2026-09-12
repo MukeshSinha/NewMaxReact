@@ -147,19 +147,19 @@ export const LeaveRequestPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header Banner matching legacy LeaveRequest */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 shadow-xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-indigo-100 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-400 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-400 flex items-center justify-center text-white shadow-md shadow-indigo-600/20">
             <CalendarOff className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white tracking-wide">Leave Posting & Request</h1>
-            <p className="text-xs text-slate-400">
+            <h1 className="text-xl font-bold text-slate-800 tracking-wide">Leave Posting & Request</h1>
+            <p className="text-xs text-slate-500">
               Apply earned, casual, medical, and comp-off leaves with real-time balance tracking & attendance history
             </p>
           </div>
         </div>
-        <div className="text-xs text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60 font-mono self-start sm:self-auto">
+        <div className="text-xs text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-200 font-mono self-start sm:self-auto">
           Area: TimeOffice / EmployeeLeaves
         </div>
       </div>
@@ -168,16 +168,16 @@ export const LeaveRequestPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Column 1: Leave Request Form */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="glass-card p-5 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl">
-            <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-slate-800 pb-3 mb-4">
-              <Calendar className="w-4 h-4 text-indigo-400" />
+          <div className="glass-card p-5 border border-slate-200 rounded-2xl bg-white shadow-sm">
+            <h2 className="text-sm font-semibold text-slate-800 flex items-center gap-2 border-b border-slate-200 pb-3 mb-4">
+              <Calendar className="w-4 h-4 text-indigo-600" />
               Leave Request Form
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
               {/* Employee Code */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Employee Code</label>
+                <label className="block text-slate-700 font-medium mb-1">Employee Code</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -185,13 +185,13 @@ export const LeaveRequestPage: React.FC = () => {
                     onChange={(e) => setEmpCode(e.target.value)}
                     onBlur={handleEmpCodeBlur}
                     placeholder="Enter employee code"
-                    className="flex-1 bg-slate-950/80 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:border-indigo-500 focus:outline-none"
+                    className="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 font-mono focus:border-indigo-500 focus:outline-none"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => loadEmployeeData(empCode)}
-                    className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px]"
+                    className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[11px]"
                   >
                     Lookup
                   </button>
@@ -200,11 +200,11 @@ export const LeaveRequestPage: React.FC = () => {
 
               {/* Leave Type */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Leave Type</label>
+                <label className="block text-slate-700 font-medium mb-1">Leave Type</label>
                 <select
                   value={leaveType}
                   onChange={(e) => setLeaveType(e.target.value)}
-                  className="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="EL">EL - Earned Leave</option>
                   <option value="CL">CL - Casual Leave</option>
@@ -217,22 +217,22 @@ export const LeaveRequestPage: React.FC = () => {
               {/* From & To Dates */}
               <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">From Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">From Date</label>
                   <input
                     type="date"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
-                    className="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white focus:border-indigo-500 focus:outline-none"
+                    className="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-1.5 text-slate-800 focus:border-indigo-500 focus:outline-none"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">To Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">To Date</label>
                   <input
                     type="date"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
-                    className="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white focus:border-indigo-500 focus:outline-none"
+                    className="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-1.5 text-slate-800 focus:border-indigo-500 focus:outline-none"
                     required
                   />
                 </div>
@@ -240,19 +240,19 @@ export const LeaveRequestPage: React.FC = () => {
 
               {/* Days (Read-only Auto Calculated) */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Total Days</label>
+                <label className="block text-slate-700 font-medium mb-1">Total Days</label>
                 <input
                   type="text"
                   value={days.toString()}
                   readOnly
-                  className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-3 py-2 text-indigo-400 font-mono font-bold"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-indigo-600 font-mono font-bold"
                 />
               </div>
 
               {/* Session Radio Group */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Session</label>
-                <div className="grid grid-cols-3 gap-2 bg-slate-950/60 p-1.5 rounded-xl border border-slate-800">
+                <label className="block text-slate-700 font-medium mb-1">Session</label>
+                <div className="grid grid-cols-3 gap-2 bg-slate-50 p-1.5 rounded-xl border border-slate-200">
                   {(['1st Half', '2nd Half', 'Full Day'] as const).map((s) => (
                     <button
                       key={s}
@@ -261,7 +261,7 @@ export const LeaveRequestPage: React.FC = () => {
                       className={`py-1 rounded-lg text-center font-medium transition-all ${
                         session === s
                           ? 'bg-indigo-600 text-white shadow-sm'
-                          : 'text-slate-400 hover:text-white hover:bg-slate-800/40'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
                       }`}
                     >
                       {s}
@@ -272,24 +272,24 @@ export const LeaveRequestPage: React.FC = () => {
 
               {/* Reason */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Reason for Leave</label>
+                <label className="block text-slate-700 font-medium mb-1">Reason for Leave</label>
                 <textarea
                   rows={2}
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   placeholder="Specify brief reason for leave..."
-                  className="w-full bg-slate-950/80 border border-slate-700 rounded-xl p-2.5 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-slate-800 placeholder-slate-400 focus:border-indigo-500 focus:outline-none"
                   required
                 />
               </div>
 
               {/* Was Informed? Checkbox */}
-              <label className="flex items-center gap-2 cursor-pointer text-slate-300 pt-1">
+              <label className="flex items-center gap-2 cursor-pointer text-slate-700 pt-1">
                 <input
                   type="checkbox"
                   checked={wasInformed}
                   onChange={(e) => setWasInformed(e.target.checked)}
-                  className="rounded border-slate-700 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
+                  className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
                 />
                 <span>Was Informed in Advance?</span>
               </label>
@@ -299,7 +299,7 @@ export const LeaveRequestPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   <Save className="w-3.5 h-3.5" />
                   <span>{submitting ? 'Saving...' : 'Save Request'}</span>
@@ -307,7 +307,7 @@ export const LeaveRequestPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs transition-all flex items-center justify-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs transition-all flex items-center justify-center gap-1.5"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset</span>
@@ -320,36 +320,36 @@ export const LeaveRequestPage: React.FC = () => {
         {/* Column 2: Leave Balance & Employee Details */}
         <div className="lg:col-span-4 space-y-4">
           {/* Leave Balance Card */}
-          <div className="glass-card p-4 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl space-y-3">
-            <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-slate-800 pb-2.5">
-              <Clock3 className="w-4 h-4 text-emerald-400" />
+          <div className="glass-card p-4 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-3">
+            <h2 className="text-sm font-semibold text-slate-800 flex items-center gap-2 border-b border-slate-200 pb-2.5">
+              <Clock3 className="w-4 h-4 text-emerald-600" />
               Leave Balance
             </h2>
 
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/40">
+                  <tr className="border-b border-slate-200 text-slate-600 bg-slate-50">
                     <th className="py-2 px-2.5 font-medium">Leave</th>
                     <th className="py-2 px-2 font-medium text-right">Open</th>
                     <th className="py-2 px-2 font-medium text-right">Avail</th>
-                    <th className="py-2 px-2 font-medium text-right text-emerald-400">Balance</th>
+                    <th className="py-2 px-2 font-medium text-right text-emerald-600">Balance</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 font-mono">
+                <tbody className="divide-y divide-slate-200 font-mono">
                   {balances.length === 0 ? (
                     <tr>
-                      <td colSpan={4} className="py-4 text-center text-slate-500 font-sans text-[11px]">
+                      <td colSpan={4} className="py-4 text-center text-slate-400 font-sans text-[11px]">
                         No leave balance data available
                       </td>
                     </tr>
                   ) : (
                     balances.map((b) => (
-                      <tr key={b.leaveType} className="hover:bg-slate-800/30">
-                        <td className="py-2 px-2.5 font-sans text-slate-300">{b.leaveType}</td>
-                        <td className="py-2 px-2 text-right text-slate-400">{b.open.toFixed(1)}</td>
-                        <td className="py-2 px-2 text-right text-amber-400">{b.avail.toFixed(1)}</td>
-                        <td className="py-2 px-2 text-right text-emerald-400 font-bold">{b.balance.toFixed(1)}</td>
+                      <tr key={b.leaveType} className="hover:bg-slate-50">
+                        <td className="py-2 px-2.5 font-sans text-slate-700">{b.leaveType}</td>
+                        <td className="py-2 px-2 text-right text-slate-500">{b.open.toFixed(1)}</td>
+                        <td className="py-2 px-2 text-right text-amber-600">{b.avail.toFixed(1)}</td>
+                        <td className="py-2 px-2 text-right text-emerald-600 font-bold">{b.balance.toFixed(1)}</td>
                       </tr>
                     ))
                   )}
@@ -359,40 +359,40 @@ export const LeaveRequestPage: React.FC = () => {
           </div>
 
           {/* Employee Information Card */}
-          <div className="glass-card p-4 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl space-y-3">
-            <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-slate-800 pb-2.5">
-              <User className="w-4 h-4 text-indigo-400" />
+          <div className="glass-card p-4 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-3">
+            <h2 className="text-sm font-semibold text-slate-800 flex items-center gap-2 border-b border-slate-200 pb-2.5">
+              <User className="w-4 h-4 text-indigo-600" />
               Employee Information
             </h2>
             {employeeInfo ? (
               <div className="space-y-2 text-xs">
-                <div className="flex justify-between border-b border-slate-800/50 pb-1.5">
-                  <span className="text-slate-400">Name:</span>
-                  <span className="font-semibold text-white text-right">{employeeInfo.name}</span>
+                <div className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span className="text-slate-500">Name:</span>
+                  <span className="font-semibold text-slate-800 text-right">{employeeInfo.name}</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-800/50 pb-1.5">
-                  <span className="text-slate-400">Category:</span>
-                  <span className="text-slate-200">{employeeInfo.category || 'WORKER'}</span>
+                <div className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span className="text-slate-500">Category:</span>
+                  <span className="text-slate-700">{employeeInfo.category || 'WORKER'}</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-800/50 pb-1.5">
-                  <span className="text-slate-400">Department:</span>
-                  <span className="text-indigo-400 font-medium">{employeeInfo.department}</span>
+                <div className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span className="text-slate-500">Department:</span>
+                  <span className="text-indigo-600 font-medium">{employeeInfo.department}</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-800/50 pb-1.5">
-                  <span className="text-slate-400">Contractor:</span>
-                  <span className="text-slate-300 text-right">{employeeInfo.contractor}</span>
+                <div className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span className="text-slate-500">Contractor:</span>
+                  <span className="text-slate-700 text-right">{employeeInfo.contractor}</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-800/50 pb-1.5">
-                  <span className="text-slate-400">DOJ (Joining):</span>
-                  <span className="font-mono text-slate-300">{employeeInfo.joiningDate || '-'}</span>
+                <div className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span className="text-slate-500">DOJ (Joining):</span>
+                  <span className="font-mono text-slate-700">{employeeInfo.joiningDate || '-'}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">DOL (Leaving):</span>
-                  <span className="font-mono text-slate-500">-- (Active)</span>
+                  <span className="text-slate-500">DOL (Leaving):</span>
+                  <span className="font-mono text-slate-400">-- (Active)</span>
                 </div>
               </div>
             ) : (
-              <div className="text-center py-6 text-slate-500 text-xs">
+              <div className="text-center py-6 text-slate-400 text-xs">
                 Enter an employee code to view details
               </div>
             )}
@@ -401,16 +401,16 @@ export const LeaveRequestPage: React.FC = () => {
 
         {/* Column 3: Recent Attendance Logs */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="glass-card p-4 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl space-y-3">
-            <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-slate-800 pb-2.5">
-              <Clock className="w-4 h-4 text-indigo-400" />
+          <div className="glass-card p-4 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-3">
+            <h2 className="text-sm font-semibold text-slate-800 flex items-center gap-2 border-b border-slate-200 pb-2.5">
+              <Clock className="w-4 h-4 text-indigo-600" />
               Recent Attendance
             </h2>
 
             <div className="overflow-x-auto max-h-96 overflow-y-auto custom-scrollbar">
               <table className="w-full text-xs text-left">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/40 sticky top-0">
+                  <tr className="border-b border-slate-200 text-slate-600 bg-slate-50 sticky top-0">
                     <th className="py-2 px-2 font-medium">Date</th>
                     <th className="py-2 px-1.5 font-medium">Sft</th>
                     <th className="py-2 px-1.5 font-medium">In</th>
@@ -419,38 +419,38 @@ export const LeaveRequestPage: React.FC = () => {
                     <th className="py-2 px-1.5 font-medium">GP</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 font-mono">
+                <tbody className="divide-y divide-slate-200 font-mono">
                   {recentAttendance.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="py-6 text-center text-slate-500 font-sans text-[11px]">
+                      <td colSpan={6} className="py-6 text-center text-slate-400 font-sans text-[11px]">
                         No recent attendance records
                       </td>
                     </tr>
                   ) : (
                     recentAttendance.map((att, idx) => (
-                    <tr key={idx} className="hover:bg-slate-800/30">
-                      <td className="py-1.5 px-2 text-slate-300">{att.date}</td>
+                    <tr key={idx} className="hover:bg-slate-50">
+                      <td className="py-1.5 px-2 text-slate-700">{att.date}</td>
                       <td className="py-1.5 px-1.5 font-sans">
-                        <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]">
+                        <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">
                           {att.shift}
                         </span>
                       </td>
-                      <td className="py-1.5 px-1.5 text-slate-400">{att.inTime}</td>
-                      <td className="py-1.5 px-1.5 text-slate-400">{att.outTime}</td>
+                      <td className="py-1.5 px-1.5 text-slate-600">{att.inTime}</td>
+                      <td className="py-1.5 px-1.5 text-slate-600">{att.outTime}</td>
                       <td className="py-1.5 px-1.5 font-sans">
                         <span
                           className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
                             att.status === 'P'
-                              ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-800/40'
+                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                               : att.status === 'W/O'
-                              ? 'bg-blue-950/80 text-blue-400 border border-blue-800/40'
-                              : 'bg-rose-950/80 text-rose-400 border border-rose-800/40'
+                              ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                              : 'bg-rose-50 text-rose-700 border border-rose-200'
                           }`}
                         >
                           {att.status}
                         </span>
                       </td>
-                      <td className="py-1.5 px-1.5 text-slate-500">{att.gatepass}</td>
+                      <td className="py-1.5 px-1.5 text-slate-400">{att.gatepass}</td>
                     </tr>
                   ))
                   )}
@@ -462,19 +462,19 @@ export const LeaveRequestPage: React.FC = () => {
       </div>
 
       {/* Bottom Section: Previous Request Table matching legacy LeaveRequest.cshtml */}
-      <div className="glass-card p-5 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+      <div className="glass-card p-5 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-4">
+        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
           <div className="flex items-center gap-2">
-            <CalendarOff className="w-4 h-4 text-indigo-400" />
-            <h2 className="text-sm font-semibold text-white">Previous Leave Requests</h2>
+            <CalendarOff className="w-4 h-4 text-indigo-600" />
+            <h2 className="text-sm font-semibold text-slate-800">Previous Leave Requests</h2>
           </div>
-          <span className="text-xs text-slate-400 font-mono">{previousRequests.length} Recorded</span>
+          <span className="text-xs text-slate-500 font-mono">{previousRequests.length} Recorded</span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/40">
+              <tr className="border-b border-slate-200 text-slate-600 bg-slate-50">
                 <th className="py-2.5 px-3 font-medium">Req ID</th>
                 <th className="py-2.5 px-3 font-medium">Date Applied</th>
                 <th className="py-2.5 px-3 font-medium">Leave Type</th>
@@ -485,35 +485,35 @@ export const LeaveRequestPage: React.FC = () => {
                 <th className="py-2.5 px-3 font-medium text-center">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-mono">
+            <tbody className="divide-y divide-slate-200 font-mono">
               {previousRequests.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-6 text-slate-500 font-sans">
+                  <td colSpan={8} className="text-center py-6 text-slate-400 font-sans">
                     No previous leave requests found for this employee.
                   </td>
                 </tr>
               ) : (
                 previousRequests.map((req) => (
-                  <tr key={req.id} className="hover:bg-slate-800/30">
-                    <td className="py-2 px-3 text-indigo-400 font-semibold">{req.id}</td>
-                    <td className="py-2 px-3 text-slate-300">{req.appliedDate}</td>
+                  <tr key={req.id} className="hover:bg-slate-50">
+                    <td className="py-2 px-3 text-indigo-600 font-semibold">{req.id}</td>
+                    <td className="py-2 px-3 text-slate-700">{req.appliedDate}</td>
                     <td className="py-2 px-3 font-sans">
-                      <span className="px-2 py-0.5 rounded bg-indigo-950/60 text-indigo-300 border border-indigo-800/40 font-semibold text-[11px]">
+                      <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 font-semibold text-[11px]">
                         {req.leaveType}
                       </span>
                     </td>
-                    <td className="py-2 px-3 text-slate-300">{req.fromDate}</td>
-                    <td className="py-2 px-3 text-slate-300">{req.toDate}</td>
-                    <td className="py-2 px-3 text-center text-slate-200 font-bold">{req.days}</td>
-                    <td className="py-2 px-3 font-sans text-slate-300 max-w-xs truncate">{req.reason}</td>
+                    <td className="py-2 px-3 text-slate-700">{req.fromDate}</td>
+                    <td className="py-2 px-3 text-slate-700">{req.toDate}</td>
+                    <td className="py-2 px-3 text-center text-slate-800 font-bold">{req.days}</td>
+                    <td className="py-2 px-3 font-sans text-slate-700 max-w-xs truncate">{req.reason}</td>
                     <td className="py-2 px-3 text-center font-sans">
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
                           req.status === 'Approved'
-                            ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-800/50'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                             : req.status === 'Rejected'
-                            ? 'bg-rose-950/80 text-rose-400 border border-rose-800/50'
-                            : 'bg-amber-950/80 text-amber-400 border border-amber-800/50'
+                            ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                            : 'bg-amber-50 text-amber-700 border border-amber-200'
                         }`}
                       >
                         {req.status === 'Approved' ? (

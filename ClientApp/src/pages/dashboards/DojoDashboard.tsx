@@ -27,8 +27,8 @@ export const DojoDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-black text-white tracking-wide">Dojo Training Dashboard</h1>
-        <p className="text-xs text-slate-400">Worker Skill Center, Certification & Test Pass Rate</p>
+        <h1 className="text-2xl font-black text-slate-800 tracking-wide">Dojo Training Dashboard</h1>
+        <p className="text-xs text-slate-500">Worker Skill Center, Certification & Test Pass Rate</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -43,19 +43,19 @@ export const DojoDashboard: React.FC = () => {
         data={trainees}
         exportFileName="Dojo_Trainee_Results"
         columns={[
-          { header: 'Trainee ID', accessor: 'code', className: 'font-semibold text-indigo-400' },
-          { header: 'Trainee Name', accessor: 'name', className: 'font-bold text-white' },
-          { header: 'Assigned Dept', accessor: 'dept' },
-          { header: 'Score', accessor: 'score', className: 'font-mono text-emerald-400' },
+          { header: 'Trainee ID', accessor: 'code', className: 'font-semibold text-indigo-700' },
+          { header: 'Trainee Name', accessor: 'name', className: 'font-bold text-slate-800' },
+          { header: 'Assigned Dept', accessor: 'dept', className: 'text-slate-600' },
+          { header: 'Score', accessor: 'score', className: 'font-mono text-emerald-600 font-semibold' },
           {
             header: 'Status',
             accessor: (r) => (
-              <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${r.status === 'Passed' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'}`}>
+              <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${r.status === 'Passed' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'}`}>
                 {r.status}
               </span>
             ),
           },
-          { header: 'Certificate No', accessor: 'certNo', className: 'font-mono text-slate-300' },
+          { header: 'Certificate No', accessor: 'certNo', className: 'font-mono text-slate-500' },
         ]}
       />
     </div>

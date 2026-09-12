@@ -37,47 +37,47 @@ export const ChangePasswordPage: React.FC = () => {
   return (
     <div className="max-w-md mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-black text-white tracking-wide">Change Security Password</h1>
-        <p className="text-xs text-slate-400">Update User Account Credentials</p>
+        <h1 className="text-2xl font-bold text-slate-800 tracking-tight">Change Security Password</h1>
+        <p className="text-xs text-slate-500">Update User Account Credentials</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="glass-card p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="p-6 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-4">
         <div>
-          <label className="block text-xs font-semibold text-slate-300 mb-1">Current Password</label>
+          <label className="block text-xs font-semibold text-slate-700 mb-1">Current Password</label>
           <input
             type="password"
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+            className="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:border-indigo-500 focus:outline-none"
             required
           />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-300 mb-1">New Password</label>
+          <label className="block text-xs font-semibold text-slate-700 mb-1">New Password</label>
           <input
             type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+            className="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:border-indigo-500 focus:outline-none"
             required
           />
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-300 mb-1">Confirm New Password</label>
+          <label className="block text-xs font-semibold text-slate-700 mb-1">Confirm New Password</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+            className="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:border-indigo-500 focus:outline-none"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30"
+          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/20"
         >
           <ShieldCheck className="w-4 h-4" />
           <span>Update Password</span>

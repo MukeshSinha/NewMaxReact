@@ -82,8 +82,8 @@ export const ContractorDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-black text-white tracking-wide">Contractor Overview Dashboard</h1>
-        <p className="text-xs text-slate-400">Assigned Strength, Today Manpower & Department Allocation</p>
+        <h1 className="text-2xl font-black text-slate-800 tracking-wide">Contractor Overview Dashboard</h1>
+        <p className="text-xs text-slate-500">Assigned Strength, Today Manpower & Department Allocation</p>
       </div>
 
       {/* Top 3 Attendance Cards */}
@@ -122,11 +122,11 @@ export const ContractorDashboard: React.FC = () => {
         exportFileName="Contractor_Strength_This_Month"
         searchPlaceholder="Search category..."
         columns={[
-          { header: 'Category', accessor: 'category', className: 'font-semibold text-indigo-300' },
+          { header: 'Category', accessor: 'category', className: 'font-semibold text-indigo-700' },
           { header: 'Last On Roll', accessor: 'lastMonth', className: 'text-center font-medium' },
-          { header: 'New Join', accessor: 'newJoin', className: 'text-center font-medium text-emerald-400' },
-          { header: 'Leave', accessor: 'leave', className: 'text-center font-medium text-rose-400' },
-          { header: 'Live as on Date', accessor: 'balance', className: 'text-center font-bold text-amber-400' },
+          { header: 'New Join', accessor: 'newJoin', className: 'text-center font-medium text-emerald-600' },
+          { header: 'Leave', accessor: 'leave', className: 'text-center font-medium text-rose-600' },
+          { header: 'Live as on Date', accessor: 'balance', className: 'text-center font-bold text-amber-600' },
         ]}
       />
 
@@ -137,12 +137,12 @@ export const ContractorDashboard: React.FC = () => {
           isLoading={loading || loadingManpower}
           headerControls={
             <div className="flex items-center gap-2 text-xs ml-2">
-              <span className="text-slate-400 font-medium">For other date</span>
+              <span className="text-slate-500 font-medium">For other date</span>
               <input
                 type="date"
                 value={manpowerDate}
                 onChange={(e) => handleManpowerDateChange(e.target.value)}
-                className="bg-slate-800/90 border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           }
@@ -150,11 +150,11 @@ export const ContractorDashboard: React.FC = () => {
           exportFileName="Contractor_Today_Manpower"
           searchPlaceholder="Search contractor..."
           columns={[
-            { header: 'Contractor', accessor: 'ezone', className: 'font-semibold text-indigo-300' },
+            { header: 'Contractor', accessor: 'ezone', className: 'font-semibold text-indigo-700' },
             { header: 'Regular', accessor: 'regular', className: 'text-center font-medium' },
             { header: 'FOT', accessor: 'fot', className: 'text-center font-medium' },
             { header: 'TOA', accessor: 'toa', className: 'text-center font-medium' },
-            { header: 'TOTAL', accessor: 'total', className: 'text-center font-bold text-emerald-400' },
+            { header: 'TOTAL', accessor: 'total', className: 'text-center font-bold text-emerald-600' },
           ]}
         />
 
@@ -164,12 +164,12 @@ export const ContractorDashboard: React.FC = () => {
           isLoading={loading || loadingDept}
           headerControls={
             <div className="flex items-center gap-2 text-xs ml-2">
-              <span className="text-slate-400 font-medium">For other date</span>
+              <span className="text-slate-500 font-medium">For other date</span>
               <input
                 type="date"
                 value={deptDate}
                 onChange={(e) => handleDeptDateChange(e.target.value)}
-                className="bg-slate-800/90 border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           }
@@ -177,11 +177,11 @@ export const ContractorDashboard: React.FC = () => {
           exportFileName="Contractor_Dept_Allocation"
           searchPlaceholder="Search department..."
           columns={[
-            { header: 'Department', accessor: 'dept', className: 'font-semibold text-indigo-300' },
+            { header: 'Department', accessor: 'dept', className: 'font-semibold text-indigo-700' },
             { header: 'Regular', accessor: 'regular', className: 'text-center font-medium' },
             { header: 'FOT', accessor: 'fot', className: 'text-center font-medium' },
             { header: 'TOA', accessor: 'toa', className: 'text-center font-medium' },
-            { header: 'TOTAL', accessor: (row) => row.totalManpower ?? row.total, className: 'text-center font-bold text-emerald-400' },
+            { header: 'TOTAL', accessor: (row) => row.totalManpower ?? row.total, className: 'text-center font-bold text-emerald-600' },
           ]}
         />
       </div>
@@ -197,18 +197,18 @@ export const ContractorDashboard: React.FC = () => {
         exportFileName="Recent_Tickets"
         searchPlaceholder="Search ticket..."
         columns={[
-          { header: 'Assignee/Users', accessor: 'assignee', className: 'font-semibold text-indigo-300' },
-          { header: 'Subject', accessor: 'subject', className: 'font-medium' },
+          { header: 'Assignee/Users', accessor: 'assignee', className: 'font-semibold text-indigo-700' },
+          { header: 'Subject', accessor: 'subject', className: 'font-medium text-slate-700' },
           {
             header: 'Status',
             accessor: (row) => {
               const status = row.status;
               const color =
                 status === 'DONE'
-                  ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                   : status === 'PROGRESS'
-                  ? 'bg-amber-500/20 text-amber-400 border-amber-500/30'
-                  : 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+                  ? 'bg-amber-50 text-amber-700 border-amber-200'
+                  : 'bg-blue-50 text-blue-700 border-blue-200';
               return (
                 <span className={`inline-block px-2.5 py-0.5 rounded text-[11px] font-bold border uppercase ${color}`}>
                   {status}
@@ -217,8 +217,8 @@ export const ContractorDashboard: React.FC = () => {
             },
             className: 'text-center',
           },
-          { header: 'Last Update', accessor: 'lastUpdate', className: 'text-center text-slate-400' },
-          { header: 'Tracking ID', accessor: 'trackingId', className: 'text-center font-mono text-indigo-400' },
+          { header: 'Last Update', accessor: 'lastUpdate', className: 'text-center text-slate-500' },
+          { header: 'Tracking ID', accessor: 'trackingId', className: 'text-center font-mono text-indigo-600 font-semibold' },
         ]}
       />
     </div>

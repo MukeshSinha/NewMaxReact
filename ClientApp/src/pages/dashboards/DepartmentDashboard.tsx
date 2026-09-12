@@ -76,8 +76,8 @@ export const DepartmentDashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-black text-white tracking-wide">Department Head Dashboard</h1>
-        <p className="text-xs text-slate-400">Department Contractor & Department Wise Manpower Overview</p>
+        <h1 className="text-2xl font-black text-slate-800 tracking-wide">Department Head Dashboard</h1>
+        <p className="text-xs text-slate-500">Department Contractor & Department Wise Manpower Overview</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -94,12 +94,12 @@ export const DepartmentDashboard: React.FC = () => {
           isLoading={loading || loadingContractor}
           headerControls={
             <div className="flex items-center gap-2 text-xs ml-2">
-              <span className="text-slate-400 font-medium">For other date</span>
+              <span className="text-slate-500 font-medium">For other date</span>
               <input
                 type="date"
                 value={contractorDate}
                 onChange={(e) => handleContractorDateChange(e.target.value)}
-                className="bg-slate-800/90 border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           }
@@ -107,19 +107,19 @@ export const DepartmentDashboard: React.FC = () => {
           exportFileName="Dept_Contractor_Manpower"
           searchPlaceholder="Search contractor..."
           columns={[
-            { header: 'Contractor', accessor: 'ezone', className: 'font-semibold text-indigo-300' },
+            { header: 'Contractor', accessor: 'ezone', className: 'font-semibold text-indigo-700' },
             { header: 'CONT.', accessor: 'regular', className: 'text-center font-medium' },
             { header: 'FOT', accessor: 'fot', className: 'text-center font-medium' },
             { header: 'NAPS', accessor: 'toa', className: 'text-center font-medium' },
-            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-400' },
+            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-600' },
           ]}
           totalRow={
-            <tr className="bg-slate-900 font-extrabold text-white border-t-2 border-indigo-500/50">
+            <tr className="bg-slate-100 font-extrabold text-slate-900 border-t-2 border-indigo-500">
               <td className="p-3 text-right">TOTAL :</td>
-              <td className="p-3 text-center text-emerald-400">{totalContractorReg}</td>
-              <td className="p-3 text-center text-indigo-400">{totalContractorFot}</td>
-              <td className="p-3 text-center text-purple-400">{totalContractorToa}</td>
-              <td className="p-3 text-center text-amber-400">{totalContractorAll}</td>
+              <td className="p-3 text-center text-emerald-600">{totalContractorReg}</td>
+              <td className="p-3 text-center text-indigo-600">{totalContractorFot}</td>
+              <td className="p-3 text-center text-purple-600">{totalContractorToa}</td>
+              <td className="p-3 text-center text-amber-600">{totalContractorAll}</td>
             </tr>
           }
         />
@@ -130,12 +130,12 @@ export const DepartmentDashboard: React.FC = () => {
           isLoading={loading || loadingDept}
           headerControls={
             <div className="flex items-center gap-2 text-xs ml-2">
-              <span className="text-slate-400 font-medium">For other date</span>
+              <span className="text-slate-500 font-medium">For other date</span>
               <input
                 type="date"
                 value={deptDate}
                 onChange={(e) => handleDeptDateChange(e.target.value)}
-                className="bg-slate-800/90 border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           }
@@ -143,19 +143,19 @@ export const DepartmentDashboard: React.FC = () => {
           exportFileName="Department_Wise_Manpower"
           searchPlaceholder="Search department..."
           columns={[
-            { header: 'Department', accessor: 'dept', className: 'font-semibold text-indigo-300' },
+            { header: 'Department', accessor: 'dept', className: 'font-semibold text-indigo-700' },
             { header: 'CONT', accessor: 'regular', className: 'text-center font-medium' },
             { header: 'FOT', accessor: 'fot', className: 'text-center font-medium' },
             { header: 'NAPS', accessor: 'toa', className: 'text-center font-medium' },
-            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-400' },
+            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-600' },
           ]}
           totalRow={
-            <tr className="bg-slate-900 font-extrabold text-white border-t-2 border-indigo-500/50">
+            <tr className="bg-slate-100 font-extrabold text-slate-900 border-t-2 border-indigo-500">
               <td className="p-3 text-right">TOTAL :</td>
-              <td className="p-3 text-center text-emerald-400">{totalDeptReg}</td>
-              <td className="p-3 text-center text-indigo-400">{totalDeptFot}</td>
-              <td className="p-3 text-center text-purple-400">{totalDeptToa}</td>
-              <td className="p-3 text-center text-amber-400">{totalDeptAll}</td>
+              <td className="p-3 text-center text-emerald-600">{totalDeptReg}</td>
+              <td className="p-3 text-center text-indigo-600">{totalDeptFot}</td>
+              <td className="p-3 text-center text-purple-600">{totalDeptToa}</td>
+              <td className="p-3 text-center text-amber-600">{totalDeptAll}</td>
             </tr>
           }
         />

@@ -141,15 +141,15 @@ export const Sidebar: React.FC = () => {
   if (!sidebarOpen) return null;
 
   return (
-    <aside className="w-64 bg-slate-900/95 backdrop-blur-xl border-r border-slate-800 text-slate-300 flex flex-col h-screen sticky top-0 z-30 transition-all duration-300 shadow-2xl">
+    <aside className="w-64 bg-white border-r border-slate-200 text-slate-600 flex flex-col h-screen sticky top-0 z-30 transition-all duration-300 shadow-sm">
       {/* Brand Header */}
-      <div className="p-4 border-b border-slate-800 flex items-center gap-3">
+      <div className="p-4 border-b border-slate-200 flex items-center gap-3">
         <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-md shadow-indigo-600/30">
           <Clock className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="font-bold text-white tracking-wide text-sm leading-tight">MaxPay Contractor UI</h1>
-          <span className="text-[10px] text-indigo-400 font-semibold tracking-wider uppercase">Time & Attendance</span>
+          <h1 className="font-bold text-slate-800 tracking-wide text-sm leading-tight">MaxPay Contractor UI</h1>
+          <span className="text-[10px] text-indigo-600 font-semibold tracking-wider uppercase">Time & Attendance</span>
         </div>
       </div>
 
@@ -166,27 +166,27 @@ export const Sidebar: React.FC = () => {
                 onClick={() => toggleSubmenu(item.title)}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   hasActiveChild || isSubOpen
-                    ? 'bg-slate-800/90 text-indigo-400 font-semibold shadow-inner'
-                    : 'hover:bg-slate-800/50 text-slate-300 hover:text-white'
+                    ? 'bg-indigo-50/80 text-indigo-700 font-semibold'
+                    : 'hover:bg-slate-100 text-slate-600 hover:text-slate-900'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${hasActiveChild || isSubOpen ? 'text-indigo-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${hasActiveChild || isSubOpen ? 'text-indigo-600' : 'text-slate-400'}`} />
                   <span>{item.title}</span>
                 </div>
                 {isSubOpen ? (
-                  <ChevronDown className="w-4 h-4 text-indigo-400 transition-transform duration-200" />
+                  <ChevronDown className="w-4 h-4 text-indigo-600 transition-transform duration-200" />
                 ) : (
-                  <ChevronRight className="w-4 h-4 text-slate-500 transition-transform duration-200" />
+                  <ChevronRight className="w-4 h-4 text-slate-400 transition-transform duration-200" />
                 )}
               </button>
 
               {/* Submenu Dropdown */}
               {isSubOpen && item.children && (
-                <div className="pl-6 pr-1 py-1 space-y-0.5 border-l-2 border-indigo-900/40 ml-4">
+                <div className="pl-6 pr-1 py-1 space-y-0.5 border-l-2 border-indigo-200 ml-4">
                   {item.children.map((child, cIdx) => {
                     if (child.isDivider) {
-                      return <div key={`div-${cIdx}`} className="my-1.5 border-t border-slate-800/80" />;
+                      return <div key={`div-${cIdx}`} className="my-1.5 border-t border-slate-200" />;
                     }
                     return (
                       <NavLink
@@ -195,13 +195,13 @@ export const Sidebar: React.FC = () => {
                         className={({ isActive }) =>
                           `flex items-center gap-2 px-2.5 py-1.5 rounded-md text-xs font-medium transition-all ${
                             isActive
-                              ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-semibold shadow-md shadow-indigo-600/30'
-                              : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                              ? 'bg-indigo-600 text-white font-semibold shadow-sm'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                           }`
                         }
                       >
                         {/* Right arrow bullet matching legacy design */}
-                        <ArrowRight className="w-3 h-3 text-indigo-400/80 shrink-0" />
+                        <ArrowRight className={`w-3 h-3 shrink-0 ${location.pathname === child.path ? 'text-white' : 'text-indigo-500'}`} />
                         <span className="truncate">{child.title}</span>
                       </NavLink>
                     );
@@ -214,9 +214,9 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       {/* Footer Info */}
-      <div className="p-3 border-t border-slate-800/80 text-center text-[11px] text-slate-500 flex items-center justify-between px-4">
+      <div className="p-3 border-t border-slate-200 text-center text-[11px] text-slate-500 flex items-center justify-between px-4 bg-slate-50">
         <span>Maxpay Contractor UI</span>
-        <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-950/60 text-indigo-400 border border-indigo-800/40 font-mono">v2.0</span>
+        <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 border border-indigo-200 font-mono">v2.0</span>
       </div>
     </aside>
   );

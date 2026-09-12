@@ -247,54 +247,54 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <div className="space-y-6 max-w-7xl mx-auto animate-fadeIn">
         {/* Underlined Header matching user screenshot */}
-        <div className="border-b border-slate-700/60 pb-3">
-          <h2 className="text-2xl font-bold text-slate-100 tracking-wide underline decoration-indigo-500 decoration-2 underline-offset-8">
+        <div className="border-b border-slate-200 pb-3">
+          <h2 className="text-2xl font-bold text-slate-800 tracking-wide underline decoration-indigo-500 decoration-2 underline-offset-8">
             Attendance Reports
           </h2>
-          <p className="text-xs text-slate-400 mt-2">
+          <p className="text-xs text-slate-500 mt-2">
             Select a report below to open its dedicated view with live filtering, analytics, and Excel export.
           </p>
         </div>
 
         {/* 4-Column Layout Container matching screenshot */}
-        <div className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-xl backdrop-blur-md">
+        <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Column 1 */}
             <div className="space-y-3">
               <button
                 type="button"
                 onClick={() => handleSelectReport('ShiftWiseAttendance')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Manpower Shiftwise</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
 
               <button
                 type="button"
                 onClick={() => handleSelectReport('ShiftwisePlanVsActual')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Planed Vs Actual (Dept)</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
 
               <button
                 type="button"
                 onClick={() => handleSelectReport('IndividualAttendance')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Individual Attendance</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
 
               <button
                 type="button"
                 onClick={() => handleSelectReport('DateWiseManpower')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Dept wise Manpower</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
             </div>
 
@@ -303,19 +303,19 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
               <button
                 type="button"
                 onClick={() => handleSelectReport('DailyDeptCategoryWiseAttendance')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Manpower Dept Wise</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
 
               <button
                 type="button"
                 onClick={() => handleSelectReport('GetMusterRoll')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Muster Roll</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
             </div>
 
@@ -324,19 +324,19 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
               <button
                 type="button"
                 onClick={() => handleSelectReport('DepartmentwiseApiManpower')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Deptwise API mandays</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
 
               <button
                 type="button"
                 onClick={() => handleSelectReport('DailyArrivalReport')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Daily Arrival</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
             </div>
 
@@ -345,10 +345,10 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
               <button
                 type="button"
                 onClick={() => handleSelectReport('PeriodicApiManpower')}
-                className="w-full text-left bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 hover:border-indigo-500 text-indigo-400 hover:text-indigo-300 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
+                className="w-full text-left bg-white hover:bg-slate-50 border border-slate-200 hover:border-indigo-400 text-indigo-700 hover:text-indigo-800 font-medium text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-between group"
               >
                 <span>Periodic Api</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all" />
               </button>
             </div>
           </div>
@@ -365,24 +365,24 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <div className="space-y-6 max-w-7xl mx-auto animate-fadeIn">
         {/* Navigation & Header Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 shadow-xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-indigo-50 via-white to-indigo-50 border border-indigo-100 shadow-sm">
           <div className="flex items-center gap-4">
             <button
               type="button"
               onClick={handleBackToHub}
-              className="p-2.5 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white border border-slate-700 transition-all shadow-md group"
+              className="p-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-indigo-600 border border-slate-200 transition-all shadow-sm group"
               title="Back to Attendance Reports"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
             </button>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-indigo-400 font-semibold">{config.category}</span>
-                <span className="text-xs text-slate-500">/</span>
-                <span className="text-xs text-slate-400">Attendance Report</span>
+                <span className="text-xs text-indigo-600 font-semibold">{config.category}</span>
+                <span className="text-xs text-slate-400">/</span>
+                <span className="text-xs text-slate-500">Attendance Report</span>
               </div>
-              <h1 className="text-xl font-bold text-white tracking-wide mt-0.5">{config.title}</h1>
-              <p className="text-xs text-slate-400 mt-0.5">{config.subtitle}</p>
+              <h1 className="text-xl font-bold text-slate-800 tracking-wide mt-0.5">{config.title}</h1>
+              <p className="text-xs text-slate-500 mt-0.5">{config.subtitle}</p>
             </div>
           </div>
 
@@ -390,7 +390,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             <button
               type="button"
               onClick={handleBackToHub}
-              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700 transition-all font-medium"
+              className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 text-xs border border-slate-200 transition-all font-medium shadow-sm"
             >
               All Reports
             </button>
@@ -398,26 +398,26 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
         </div>
 
         {/* Filter Toolbar Section */}
-        <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-xl space-y-4">
+        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
           <div className="flex flex-wrap items-end gap-3 text-xs">
             {/* Report 1: Shift Wise */}
             {activeReportId === 'ShiftWiseAttendance' && (
               <>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">For Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">For Date</label>
                   <input
                     type="date"
                     value={forDate}
                     onChange={(e) => setForDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">Category</label>
+                  <label className="block text-slate-700 font-medium mb-1">Category</label>
                   <select
                     value={categoryFilter}
                     onChange={(e) => setCategoryFilter(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   >
                     <option value="ALL">ALL</option>
                     <option value="Regular">Regular</option>
@@ -431,12 +431,12 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {/* Report 2: Manpower Dept Wise */}
             {activeReportId === 'DailyDeptCategoryWiseAttendance' && (
               <div>
-                <label className="block text-slate-300 font-medium mb-1">For Date</label>
+                <label className="block text-slate-700 font-medium mb-1">For Date</label>
                 <input
                   type="date"
                   value={forDate}
                   onChange={(e) => setForDate(e.target.value)}
-                  className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                  className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
             )}
@@ -444,12 +444,12 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {/* Report 3: Deptwise API mandays */}
             {activeReportId === 'DepartmentwiseApiManpower' && (
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Date of:</label>
+                <label className="block text-slate-700 font-medium mb-1">Date of:</label>
                 <input
                   type="date"
                   value={forDate}
                   onChange={(e) => setForDate(e.target.value)}
-                  className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                  className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
             )}
@@ -458,21 +458,21 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {activeReportId === 'PeriodicApiManpower' && (
               <>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">From Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">From Date</label>
                   <input
                     type="date"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">To Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">To Date</label>
                   <input
                     type="date"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
               </>
@@ -481,12 +481,12 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {/* Report 5: Planed Vs Actual */}
             {activeReportId === 'ShiftwisePlanVsActual' && (
               <div>
-                <label className="block text-slate-300 font-medium mb-1">For the Date:</label>
+                <label className="block text-slate-700 font-medium mb-1">For the Date:</label>
                 <input
                   type="date"
                   value={forDate}
                   onChange={(e) => setForDate(e.target.value)}
-                  className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                  className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
             )}
@@ -495,21 +495,21 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {activeReportId === 'GetMusterRoll' && (
               <>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">From Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">From Date</label>
                   <input
                     type="date"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">To Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">To Date</label>
                   <input
                     type="date"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
               </>
@@ -519,20 +519,20 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {activeReportId === 'DailyArrivalReport' && (
               <>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">Date of:</label>
+                  <label className="block text-slate-700 font-medium mb-1">Date of:</label>
                   <input
                     type="date"
                     value={forDate}
                     onChange={(e) => setForDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">Contractor</label>
+                  <label className="block text-slate-700 font-medium mb-1">Contractor</label>
                   <select
                     value={contractorFilter}
                     onChange={(e) => setContractorFilter(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none min-w-[200px]"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none min-w-[200px]"
                   >
                     <option value="ALL">ALL Contractors</option>
                     {contractorList.map((c) => (
@@ -549,37 +549,37 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {activeReportId === 'IndividualAttendance' && (
               <>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">Emp. Code</label>
+                  <label className="block text-slate-700 font-medium mb-1">Emp. Code</label>
                   <input
                     type="text"
                     value={empCodeInput}
                     onChange={(e) => setEmpCodeInput(e.target.value)}
                     placeholder="Enter Emp Code"
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none font-mono"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">From Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">From Date</label>
                   <input
                     type="date"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-medium mb-1">To Date</label>
+                  <label className="block text-slate-700 font-medium mb-1">To Date</label>
                   <input
                     type="date"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
-                    className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   />
                 </div>
                 {employeeName && (
                   <div className="pb-2">
-                    <span className="text-slate-400 text-xs">Employee: </span>
-                    <span className="text-indigo-300 font-semibold text-xs">{employeeName}</span>
+                    <span className="text-slate-500 text-xs">Employee: </span>
+                    <span className="text-indigo-600 font-semibold text-xs">{employeeName}</span>
                   </div>
                 )}
               </>
@@ -588,12 +588,12 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             {/* Report 9: Dept wise Manpower */}
             {activeReportId === 'DateWiseManpower' && (
               <div>
-                <label className="block text-slate-300 font-medium mb-1">For Date</label>
+                <label className="block text-slate-700 font-medium mb-1">For Date</label>
                 <input
                   type="date"
                   value={forDate}
                   onChange={(e) => setForDate(e.target.value)}
-                  className="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-indigo-500 focus:outline-none"
+                  className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
             )}
@@ -604,7 +604,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
                 type="button"
                 onClick={handleFetchReport}
                 disabled={loading}
-                className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/30 transition-all flex items-center gap-2 disabled:opacity-60"
+                className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all flex items-center gap-2 disabled:opacity-60"
               >
                 <Search className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
                 <span>{loading ? 'Fetching...' : 'Show'}</span>
@@ -614,7 +614,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
                 type="button"
                 onClick={handleExportExcel}
                 disabled={reportRows.length === 0}
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md shadow-emerald-600/30 transition-all flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all flex items-center gap-2 disabled:opacity-50"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download</span>
@@ -624,13 +624,13 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
         </div>
 
         {/* Table View Area */}
-        <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-xl overflow-hidden space-y-3">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-              <FileSpreadsheet className="w-4 h-4 text-indigo-400" />
+        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden space-y-3">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+            <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2">
+              <FileSpreadsheet className="w-4 h-4 text-indigo-600" />
               <span>Report Data</span>
             </h3>
-            <span className="text-xs text-slate-400 font-mono">
+            <span className="text-xs text-slate-500 font-mono">
               {reportRows.length} {reportRows.length === 1 ? 'record' : 'records'}
             </span>
           </div>
@@ -699,34 +699,34 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 sticky top-0">
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 sticky top-0">
             <th className="py-2.5 px-3 font-semibold">Department</th>
             <th className="py-2.5 px-3 font-semibold text-center">A</th>
             <th className="py-2.5 px-3 font-semibold text-center">G</th>
             <th className="py-2.5 px-3 font-semibold text-center">B</th>
             <th className="py-2.5 px-3 font-semibold text-center">C</th>
-            <th className="py-2.5 px-3 font-semibold text-center text-indigo-400">Total</th>
+            <th className="py-2.5 px-3 font-semibold text-center text-indigo-600">Total</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-200">{row.dept}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.ashift ?? 0}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.gshift ?? 0}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.bshift ?? 0}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.cshift ?? 0}</td>
-              <td className="py-2 px-3 text-center text-indigo-400 font-bold">{row.total ?? 0}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-800">{row.dept}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.ashift ?? 0}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.gshift ?? 0}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.bshift ?? 0}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.cshift ?? 0}</td>
+              <td className="py-2 px-3 text-center text-indigo-600 font-bold">{row.total ?? 0}</td>
             </tr>
           ))}
           {/* Summary Total Row */}
-          <tr className="bg-slate-950/90 font-bold text-white border-t-2 border-slate-700">
-            <td className="py-2.5 px-3 font-sans text-rose-400">Total</td>
+          <tr className="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300">
+            <td className="py-2.5 px-3 font-sans text-rose-600">Total</td>
             <td className="py-2.5 px-3 text-center">{totA}</td>
             <td className="py-2.5 px-3 text-center">{totG}</td>
             <td className="py-2.5 px-3 text-center">{totB}</td>
             <td className="py-2.5 px-3 text-center">{totC}</td>
-            <td className="py-2.5 px-3 text-center text-indigo-400">{totTotal}</td>
+            <td className="py-2.5 px-3 text-center text-indigo-600">{totTotal}</td>
           </tr>
         </tbody>
       </table>
@@ -746,30 +746,30 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 sticky top-0">
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 sticky top-0">
             <th className="py-2.5 px-3 font-semibold">Department</th>
             <th className="py-2.5 px-3 font-semibold text-center">CONT</th>
             <th className="py-2.5 px-3 font-semibold text-center">FOT</th>
             <th className="py-2.5 px-3 font-semibold text-center">NAPS</th>
-            <th className="py-2.5 px-3 font-semibold text-center text-indigo-400">Total</th>
+            <th className="py-2.5 px-3 font-semibold text-center text-indigo-600">Total</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-200">{row.dept}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.regular ?? 0}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.fot ?? 0}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.toa ?? 0}</td>
-              <td className="py-2 px-3 text-center text-indigo-400 font-bold">{row.total ?? 0}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-800">{row.dept}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.regular ?? 0}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.fot ?? 0}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.toa ?? 0}</td>
+              <td className="py-2 px-3 text-center text-indigo-600 font-bold">{row.total ?? 0}</td>
             </tr>
           ))}
-          <tr className="bg-slate-950/90 font-bold text-white border-t-2 border-slate-700">
-            <td className="py-2.5 px-3 font-sans text-rose-400">Total</td>
+          <tr className="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300">
+            <td className="py-2.5 px-3 font-sans text-rose-600">Total</td>
             <td className="py-2.5 px-3 text-center">{totReg}</td>
             <td className="py-2.5 px-3 text-center">{totFot}</td>
             <td className="py-2.5 px-3 text-center">{totToa}</td>
-            <td className="py-2.5 px-3 text-center text-indigo-400">{totTotal}</td>
+            <td className="py-2.5 px-3 text-center text-indigo-600">{totTotal}</td>
           </tr>
         </tbody>
       </table>
@@ -781,39 +781,39 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left border-collapse" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/70 text-center">
-            <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-800">
+          <tr className="border-b border-slate-200 text-slate-600 bg-slate-100 text-center">
+            <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-200">
               Department
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-800 text-emerald-400">
+            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-emerald-600">
               REGULAR
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-800 text-amber-400">
+            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-amber-600">
               FOT
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold text-cyan-400">
+            <th colSpan={2} className="py-2 px-3 font-semibold text-cyan-600">
               TOA
             </th>
           </tr>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 text-center text-[11px]">
-            <th className="py-1 px-2 border-r border-slate-800/60">Present</th>
-            <th className="py-1 px-2 border-r border-slate-800">API Hrs</th>
-            <th className="py-1 px-2 border-r border-slate-800/60">Present</th>
-            <th className="py-1 px-2 border-r border-slate-800">API Hrs</th>
-            <th className="py-1 px-2 border-r border-slate-800/60">Present</th>
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 text-center text-[11px]">
+            <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
+            <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
+            <th className="py-1 px-2 border-r border-slate-200">Present</th>
             <th className="py-1 px-2">API Hrs</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-200 border-r border-slate-800">{row.dept}</td>
-              <td className="py-2 px-2 text-center text-slate-300 border-r border-slate-800/40">{row.regular ?? 0}</td>
-              <td className="py-2 px-2 text-center text-emerald-400 border-r border-slate-800">{row.regularApi ?? 0}</td>
-              <td className="py-2 px-2 text-center text-slate-300 border-r border-slate-800/40">{row.fot ?? 0}</td>
-              <td className="py-2 px-2 text-center text-amber-400 border-r border-slate-800">{row.fotApi ?? 0}</td>
-              <td className="py-2 px-2 text-center text-slate-300 border-r border-slate-800/40">{row.toa ?? 0}</td>
-              <td className="py-2 px-2 text-center text-cyan-400">{row.toaApi ?? 0}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-800 border-r border-slate-200">{row.dept}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.regular ?? 0}</td>
+              <td className="py-2 px-2 text-center text-emerald-600 font-semibold border-r border-slate-200">{row.regularApi ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.fot ?? 0}</td>
+              <td className="py-2 px-2 text-center text-amber-600 font-semibold border-r border-slate-200">{row.fotApi ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.toa ?? 0}</td>
+              <td className="py-2 px-2 text-center text-cyan-600 font-semibold">{row.toaApi ?? 0}</td>
             </tr>
           ))}
         </tbody>
@@ -826,41 +826,41 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left border-collapse" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/70 text-center">
-            <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-800">
+          <tr className="border-b border-slate-200 text-slate-600 bg-slate-100 text-center">
+            <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-200">
               Department / Date
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-800 text-emerald-400">
+            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-emerald-600">
               CONT
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-800 text-amber-400">
+            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-amber-600">
               FOT
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold text-cyan-400">
+            <th colSpan={2} className="py-2 px-3 font-semibold text-cyan-600">
               NAPS
             </th>
           </tr>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 text-center text-[11px]">
-            <th className="py-1 px-2 border-r border-slate-800/60">Present</th>
-            <th className="py-1 px-2 border-r border-slate-800">API Hrs</th>
-            <th className="py-1 px-2 border-r border-slate-800/60">Present</th>
-            <th className="py-1 px-2 border-r border-slate-800">API Hrs</th>
-            <th className="py-1 px-2 border-r border-slate-800/60">Present</th>
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 text-center text-[11px]">
+            <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
+            <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
+            <th className="py-1 px-2 border-r border-slate-200">Present</th>
             <th className="py-1 px-2">API Hrs</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-200 border-r border-slate-800">
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-800 border-r border-slate-200">
                 {row.dept || row.attDate}
               </td>
-              <td className="py-2 px-2 text-center text-slate-300 border-r border-slate-800/40">{row.regular ?? 0}</td>
-              <td className="py-2 px-2 text-center text-emerald-400 border-r border-slate-800">{row.regularApi ?? 0}</td>
-              <td className="py-2 px-2 text-center text-slate-300 border-r border-slate-800/40">{row.fot ?? 0}</td>
-              <td className="py-2 px-2 text-center text-amber-400 border-r border-slate-800">{row.fotApi ?? 0}</td>
-              <td className="py-2 px-2 text-center text-slate-300 border-r border-slate-800/40">{row.toa ?? 0}</td>
-              <td className="py-2 px-2 text-center text-cyan-400">{row.toaApi ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.regular ?? 0}</td>
+              <td className="py-2 px-2 text-center text-emerald-600 font-semibold border-r border-slate-200">{row.regularApi ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.fot ?? 0}</td>
+              <td className="py-2 px-2 text-center text-amber-600 font-semibold border-r border-slate-200">{row.fotApi ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.toa ?? 0}</td>
+              <td className="py-2 px-2 text-center text-cyan-600 font-semibold">{row.toaApi ?? 0}</td>
             </tr>
           ))}
         </tbody>
@@ -873,59 +873,59 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left border-collapse" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/70 text-center">
-            <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-800">
+          <tr className="border-b border-slate-200 text-slate-600 bg-slate-100 text-center">
+            <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-200">
               Department
             </th>
-            <th colSpan={4} className="py-2 px-2 font-semibold border-r border-slate-800 text-emerald-400">
+            <th colSpan={4} className="py-2 px-2 font-semibold border-r border-slate-200 text-emerald-600">
               A Shift
             </th>
-            <th colSpan={4} className="py-2 px-2 font-semibold border-r border-slate-800 text-amber-400">
+            <th colSpan={4} className="py-2 px-2 font-semibold border-r border-slate-200 text-amber-600">
               B Shift
             </th>
-            <th colSpan={4} className="py-2 px-2 font-semibold text-purple-400">
+            <th colSpan={4} className="py-2 px-2 font-semibold text-purple-600">
               C Shift
             </th>
           </tr>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 text-center text-[10px]">
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Cont</th>
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Fot</th>
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Naps</th>
-            <th className="py-1 px-1.5 border-r border-slate-800 font-bold text-white">Tot</th>
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 text-center text-[10px]">
+            <th className="py-1 px-1.5 border-r border-slate-200">Cont</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Fot</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Naps</th>
+            <th className="py-1 px-1.5 border-r border-slate-200 font-bold text-slate-800">Tot</th>
 
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Cont</th>
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Fot</th>
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Naps</th>
-            <th className="py-1 px-1.5 border-r border-slate-800 font-bold text-white">Tot</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Cont</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Fot</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Naps</th>
+            <th className="py-1 px-1.5 border-r border-slate-200 font-bold text-slate-800">Tot</th>
 
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Cont</th>
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Fot</th>
-            <th className="py-1 px-1.5 border-r border-slate-800/40">Naps</th>
-            <th className="py-1 px-1.5 font-bold text-white">Tot</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Cont</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Fot</th>
+            <th className="py-1 px-1.5 border-r border-slate-200">Naps</th>
+            <th className="py-1 px-1.5 font-bold text-slate-800">Tot</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono text-[11px]">
+        <tbody className="divide-y divide-slate-100 font-mono text-[11px]">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-200 border-r border-slate-800">{row.Dept}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-800 border-r border-slate-200">{row.Dept}</td>
 
               {/* A Shift */}
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.AsftReg ?? 0} ({row.AsftRegP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.AsftFOT ?? 0} ({row.AsftFOTP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.AsftTOA ?? 0} ({row.AsftTOAP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center font-bold text-emerald-400 border-r border-slate-800">{row.AsftTot ?? 0}</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.AsftReg ?? 0} ({row.AsftRegP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.AsftFOT ?? 0} ({row.AsftFOTP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.AsftTOA ?? 0} ({row.AsftTOAP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center font-bold text-emerald-600 border-r border-slate-200">{row.AsftTot ?? 0}</td>
 
               {/* B Shift */}
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.BsftReg ?? 0} ({row.BsftRegP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.BsftFOT ?? 0} ({row.BsftFOTP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.BsftTOA ?? 0} ({row.BsftTOAP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center font-bold text-amber-400 border-r border-slate-800">{row.BsftTot ?? 0}</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.BsftReg ?? 0} ({row.BsftRegP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.BsftFOT ?? 0} ({row.BsftFOTP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.BsftTOA ?? 0} ({row.BsftTOAP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center font-bold text-amber-600 border-r border-slate-200">{row.BsftTot ?? 0}</td>
 
               {/* C Shift */}
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.CsftReg ?? 0} ({row.CsftRegP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.CsftFOT ?? 0} ({row.CsftFOTP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center text-slate-300 border-r border-slate-800/30">{row.CsftTOA ?? 0} ({row.CsftTOAP ?? 0})</td>
-              <td className="py-1.5 px-1.5 text-center font-bold text-purple-400">{row.CsftTot ?? 0}</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.CsftReg ?? 0} ({row.CsftRegP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.CsftFOT ?? 0} ({row.CsftFOTP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center text-slate-600 border-r border-slate-200">{row.CsftTOA ?? 0} ({row.CsftTOAP ?? 0})</td>
+              <td className="py-1.5 px-1.5 text-center font-bold text-purple-600">{row.CsftTot ?? 0}</td>
             </tr>
           ))}
         </tbody>
@@ -938,27 +938,27 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-[11px] text-left border-collapse" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/70 sticky top-0">
-            <th className="py-2 px-2 font-semibold min-w-[70px] border-r border-slate-800">Emp Code</th>
-            <th className="py-2 px-2 font-semibold min-w-[120px] border-r border-slate-800">Name</th>
-            <th className="py-2 px-2 font-semibold min-w-[80px] border-r border-slate-800">Dept</th>
-            <th className="py-2 px-2 font-semibold min-w-[70px] border-r border-slate-800">Category</th>
+          <tr className="border-b border-slate-200 text-slate-600 bg-slate-100 sticky top-0">
+            <th className="py-2 px-2 font-semibold min-w-[70px] border-r border-slate-200">Emp Code</th>
+            <th className="py-2 px-2 font-semibold min-w-[120px] border-r border-slate-200">Name</th>
+            <th className="py-2 px-2 font-semibold min-w-[80px] border-r border-slate-200">Dept</th>
+            <th className="py-2 px-2 font-semibold min-w-[70px] border-r border-slate-200">Category</th>
             {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-              <th key={day} className="py-2 px-1 text-center font-mono border-r border-slate-800/40 min-w-[24px]">
+              <th key={day} className="py-2 px-1 text-center font-mono border-r border-slate-200 min-w-[24px]">
                 {day}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-1.5 px-2 text-indigo-400 font-bold border-r border-slate-800">{row.empCode}</td>
-              <td className="py-1.5 px-2 font-sans text-slate-200 truncate max-w-[120px] border-r border-slate-800">{row.name}</td>
-              <td className="py-1.5 px-2 font-sans text-slate-400 border-r border-slate-800">{row.dept}</td>
-              <td className="py-1.5 px-2 font-sans text-slate-300 border-r border-slate-800">{row.category}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-1.5 px-2 text-indigo-600 font-bold border-r border-slate-200">{row.empCode}</td>
+              <td className="py-1.5 px-2 font-sans text-slate-800 truncate max-w-[120px] border-r border-slate-200">{row.name}</td>
+              <td className="py-1.5 px-2 font-sans text-slate-500 border-r border-slate-200">{row.dept}</td>
+              <td className="py-1.5 px-2 font-sans text-slate-600 border-r border-slate-200">{row.category}</td>
               {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-                <td key={day} className="py-1 px-1 text-center text-[10px] border-r border-slate-800/40">
+                <td key={day} className="py-1 px-1 text-center text-[10px] border-r border-slate-200 text-slate-700">
                   {row[`dt${day}`] ?? '-'}
                 </td>
               ))}
@@ -974,24 +974,24 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 sticky top-0">
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 sticky top-0">
             <th className="py-2.5 px-3 font-semibold">Contractor</th>
             <th className="py-2.5 px-3 font-semibold">Emp Code</th>
             <th className="py-2.5 px-3 font-semibold">Name</th>
             <th className="py-2.5 px-3 font-semibold">Department</th>
             <th className="py-2.5 px-3 font-semibold text-center">Category</th>
-            <th className="py-2.5 px-3 font-semibold text-center text-emerald-400">In Time</th>
+            <th className="py-2.5 px-3 font-semibold text-center text-emerald-600">In Time</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-400 truncate max-w-xs">{row.ezone || row.contractor}</td>
-              <td className="py-2 px-3 text-indigo-400 font-bold">{row.empCode}</td>
-              <td className="py-2 px-3 font-sans text-slate-200">{row.empName}</td>
-              <td className="py-2 px-3 font-sans text-slate-300">{row.department}</td>
-              <td className="py-2 px-3 text-center font-sans text-slate-400">{row.category}</td>
-              <td className="py-2 px-3 text-center text-emerald-400 font-bold">{row.inTime}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-500 truncate max-w-xs">{row.ezone || row.contractor}</td>
+              <td className="py-2 px-3 text-indigo-600 font-bold">{row.empCode}</td>
+              <td className="py-2 px-3 font-sans text-slate-800">{row.empName}</td>
+              <td className="py-2 px-3 font-sans text-slate-600">{row.department}</td>
+              <td className="py-2 px-3 text-center font-sans text-slate-500">{row.category}</td>
+              <td className="py-2 px-3 text-center text-emerald-600 font-bold">{row.inTime}</td>
             </tr>
           ))}
         </tbody>
@@ -1004,7 +1004,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 sticky top-0">
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 sticky top-0">
             <th className="py-2.5 px-3 font-semibold">Date</th>
             <th className="py-2.5 px-3 font-semibold">Department</th>
             <th className="py-2.5 px-3 font-semibold text-center">Shift</th>
@@ -1012,34 +1012,34 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             <th className="py-2.5 px-3 font-semibold text-center">Out Time</th>
             <th className="py-2.5 px-3 font-semibold text-center">Status</th>
             <th className="py-2.5 px-3 font-semibold text-center">Work HRs</th>
-            <th className="py-2.5 px-3 font-semibold text-center text-indigo-400">Api Hrs</th>
+            <th className="py-2.5 px-3 font-semibold text-center text-indigo-600">Api Hrs</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 text-slate-300">
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 text-slate-600">
                 {row.attDate ? new Date(row.attDate).toLocaleDateString('en-GB') : '-'}
               </td>
-              <td className="py-2 px-3 font-sans text-slate-400">{row.department}</td>
-              <td className="py-2 px-3 text-center font-sans text-slate-300">{row.shift}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.inTime || '-'}</td>
-              <td className="py-2 px-3 text-center text-slate-300">{row.outTime || '-'}</td>
+              <td className="py-2 px-3 font-sans text-slate-500">{row.department}</td>
+              <td className="py-2 px-3 text-center font-sans text-slate-700">{row.shift}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.inTime || '-'}</td>
+              <td className="py-2 px-3 text-center text-slate-600">{row.outTime || '-'}</td>
               <td className="py-2 px-3 text-center font-sans">
                 <span
                   className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                     row.attStatus === 'P'
-                      ? 'bg-emerald-950 text-emerald-400 border border-emerald-800/40'
+                      ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
                       : row.attStatus === 'W/O'
-                      ? 'bg-blue-950 text-blue-400 border border-blue-800/40'
-                      : 'bg-rose-950 text-rose-400 border border-rose-800/40'
+                      ? 'bg-blue-100 text-blue-700 border border-blue-300'
+                      : 'bg-rose-100 text-rose-700 border border-rose-300'
                   }`}
                 >
                   {row.attStatus || '-'}
                 </span>
               </td>
-              <td className="py-2 px-3 text-center text-slate-200">{row.workHrs ?? 0}</td>
-              <td className="py-2 px-3 text-center text-indigo-400 font-bold">{row.apiHrs ?? 0}</td>
+              <td className="py-2 px-3 text-center text-slate-800">{row.workHrs ?? 0}</td>
+              <td className="py-2 px-3 text-center text-indigo-600 font-bold">{row.apiHrs ?? 0}</td>
             </tr>
           ))}
         </tbody>
@@ -1052,20 +1052,20 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
     return (
       <table ref={tableRef} className="w-full text-xs text-left" id="tblatt">
         <thead>
-          <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/50 sticky top-0">
+          <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 sticky top-0">
             <th className="py-2.5 px-3 font-semibold">Department</th>
             <th className="py-2.5 px-3 font-semibold text-center">Total Strength</th>
-            <th className="py-2.5 px-3 font-semibold text-center text-emerald-400">Present Count</th>
-            <th className="py-2.5 px-3 font-semibold text-center text-rose-400">Absent Count</th>
+            <th className="py-2.5 px-3 font-semibold text-center text-emerald-600">Present Count</th>
+            <th className="py-2.5 px-3 font-semibold text-center text-rose-600">Absent Count</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-mono">
+        <tbody className="divide-y divide-slate-100 font-mono">
           {reportRows.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-800/30">
-              <td className="py-2 px-3 font-sans text-slate-200">{row.department || row.dept}</td>
-              <td className="py-2 px-3 text-center text-slate-300 font-bold">{row.totalStrength ?? row.total ?? 0}</td>
-              <td className="py-2 px-3 text-center text-emerald-400 font-bold">{row.presentCount ?? row.present ?? 0}</td>
-              <td className="py-2 px-3 text-center text-rose-400 font-bold">{row.absentCount ?? row.absent ?? 0}</td>
+            <tr key={idx} className="hover:bg-slate-50/80">
+              <td className="py-2 px-3 font-sans text-slate-800">{row.department || row.dept}</td>
+              <td className="py-2 px-3 text-center text-slate-700 font-bold">{row.totalStrength ?? row.total ?? 0}</td>
+              <td className="py-2 px-3 text-center text-emerald-600 font-bold">{row.presentCount ?? row.present ?? 0}</td>
+              <td className="py-2 px-3 text-center text-rose-600 font-bold">{row.absentCount ?? row.absent ?? 0}</td>
             </tr>
           ))}
         </tbody>

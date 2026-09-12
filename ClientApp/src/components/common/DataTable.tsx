@@ -55,7 +55,7 @@ export function DataTable<T extends Record<string, any>>({
       {/* Table Header Controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div className="flex items-center gap-3">
-          {title && <h3 className="text-base font-bold text-white tracking-wide">{title}</h3>}
+          {title && <h3 className="text-base font-bold text-slate-800 tracking-wide">{title}</h3>}
           {headerControls}
         </div>
 
@@ -71,14 +71,14 @@ export function DataTable<T extends Record<string, any>>({
                 setSearchTerm(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full bg-slate-800/80 border border-slate-700/80 rounded-lg pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white border border-slate-300 rounded-lg pl-9 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
             />
           </div>
 
           {/* Export Excel Button */}
           <button
             onClick={exportToExcel}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-600/30 text-xs font-semibold transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100 text-xs font-semibold transition-all shadow-sm"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Excel</span>
@@ -87,9 +87,9 @@ export function DataTable<T extends Record<string, any>>({
       </div>
 
       {/* Table Container */}
-      <div className="overflow-x-auto rounded-lg border border-slate-800 relative min-h-[180px]">
-        <table className="w-full text-left text-xs text-slate-300">
-          <thead className="bg-slate-900/90 text-slate-200 uppercase font-semibold border-b border-slate-800">
+      <div className="overflow-x-auto rounded-lg border border-slate-200 relative min-h-[180px]">
+        <table className="w-full text-left text-xs text-slate-700">
+          <thead className="bg-slate-50 text-slate-700 uppercase font-semibold border-b border-slate-200">
             <tr>
               {columns.map((col, i) => (
                 <th key={i} className={`p-3.5 ${col.className || ''}`}>
@@ -98,7 +98,7 @@ export function DataTable<T extends Record<string, any>>({
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60 bg-slate-900/30">
+          <tbody className="divide-y divide-slate-200 bg-white">
             {isLoading ? (
               <tr>
                 <td colSpan={columns.length} className="text-center py-10">
@@ -107,7 +107,7 @@ export function DataTable<T extends Record<string, any>>({
               </tr>
             ) : paginatedData.length > 0 ? (
               paginatedData.map((row, idx) => (
-                <tr key={idx} className="hover:bg-slate-800/40 transition-colors">
+                <tr key={idx} className="hover:bg-slate-50 transition-colors">
                   {columns.map((col, colIdx) => (
                     <td key={colIdx} className={`p-3.5 ${col.className || ''}`}>
                       {typeof col.accessor === 'function' ? col.accessor(row) : row[col.accessor]}
@@ -117,7 +117,7 @@ export function DataTable<T extends Record<string, any>>({
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length} className="text-center p-8 text-slate-500 font-medium">
+                <td colSpan={columns.length} className="text-center p-8 text-slate-400 font-medium">
                   No records found
                 </td>
               </tr>
@@ -128,7 +128,7 @@ export function DataTable<T extends Record<string, any>>({
       </div>
 
       {/* Pagination Footer */}
-      <div className="flex items-center justify-between pt-2 text-xs text-slate-400">
+      <div className="flex items-center justify-between pt-2 text-xs text-slate-500">
         <span>
           Showing {filteredData.length > 0 ? (currentPage - 1) * pageSize + 1 : 0} to{' '}
           {Math.min(currentPage * pageSize, filteredData.length)} of {filteredData.length} entries
@@ -138,19 +138,19 @@ export function DataTable<T extends Record<string, any>>({
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
-            className="p-1.5 rounded-md bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-1.5 rounded-md bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
           >
-            <ChevronLeft className="w-4 h-4 text-slate-300" />
+            <ChevronLeft className="w-4 h-4 text-slate-600" />
           </button>
-          <span className="font-semibold text-slate-200">
+          <span className="font-semibold text-slate-700">
             {currentPage} / {totalPages}
           </span>
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
-            className="p-1.5 rounded-md bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-1.5 rounded-md bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
           >
-            <ChevronRight className="w-4 h-4 text-slate-300" />
+            <ChevronRight className="w-4 h-4 text-slate-600" />
           </button>
         </div>
       </div>

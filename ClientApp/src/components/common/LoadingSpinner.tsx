@@ -33,7 +33,7 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         ></div>
       </div>
       {message && (
-        <span className="text-xs font-bold text-indigo-300 tracking-wider animate-pulse">
+        <span className="text-xs font-bold text-indigo-600 tracking-wider animate-pulse">
           {message}
         </span>
       )}
@@ -42,8 +42,8 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 
   if (fullPage) {
     return (
-      <div className="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 flex items-center justify-center">
-        <div className="glass-card p-8 rounded-2xl border border-indigo-500/20 shadow-2xl">
+      <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div className="glass-card p-8 rounded-2xl border border-slate-200 shadow-2xl bg-white">
           {spinnerContent}
         </div>
       </div>

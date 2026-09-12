@@ -113,19 +113,19 @@ export const ShiftRotationPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 shadow-xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-cyan-600/30">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-500 flex items-center justify-center text-white shadow-md shadow-cyan-600/20">
             <RotateCw className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white tracking-wide">Shift Rotation Setup</h1>
-            <p className="text-xs text-slate-400">
+            <h1 className="text-xl font-bold text-slate-800 tracking-tight">Shift Rotation Setup</h1>
+            <p className="text-xs text-slate-500">
               Automate cyclical workforce shift transfers (A → B → C) across departments and contractors
             </p>
           </div>
         </div>
-        <div className="text-xs text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60 font-mono self-start sm:self-auto">
+        <div className="text-xs text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 font-mono self-start sm:self-auto">
           Area: TimeOffice / ShiftRotation
         </div>
       </div>
@@ -133,23 +133,23 @@ export const ShiftRotationPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Rotation Configuration */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="glass-card p-5 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl space-y-4">
-            <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-              <Layers className="w-4 h-4 text-cyan-400" />
+          <div className="p-5 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-4">
+            <h2 className="text-sm font-semibold text-slate-800 flex items-center gap-2 border-b border-slate-100 pb-3">
+              <Layers className="w-4 h-4 text-cyan-600" />
               Configure Rotation Matrix
             </h2>
 
             <div className="space-y-3.5 text-xs">
               {/* Department */}
               <div>
-                <label className="flex items-center gap-1.5 text-slate-300 font-medium mb-1">
-                  <Building2 className="w-3.5 h-3.5 text-cyan-400" />
+                <label className="flex items-center gap-1.5 text-slate-700 font-medium mb-1">
+                  <Building2 className="w-3.5 h-3.5 text-cyan-600" />
                   Target Department
                 </label>
                 <select
                   value={selectedDept}
                   onChange={(e) => setSelectedDept(e.target.value)}
-                  className="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-cyan-500 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-cyan-500 focus:outline-none font-medium"
                 >
                   {departments.map((d) => (
                     <option key={d} value={d}>
@@ -161,11 +161,11 @@ export const ShiftRotationPage: React.FC = () => {
 
               {/* Contractor */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Target Contractor</label>
+                <label className="block text-slate-700 font-medium mb-1">Target Contractor</label>
                 <select
                   value={selectedContractor}
                   onChange={(e) => setSelectedContractor(e.target.value)}
-                  className="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-cyan-500 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-cyan-500 focus:outline-none font-medium"
                 >
                   {contractors.map((c) => (
                     <option key={c.id} value={c.itemName}>
@@ -176,9 +176,9 @@ export const ShiftRotationPage: React.FC = () => {
               </div>
 
               {/* Shift Flow */}
-              <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2.5">
-                <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-                  <Clock className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                <div className="flex items-center gap-1.5 text-slate-600 font-medium">
+                  <Clock className="w-3.5 h-3.5 text-cyan-600" />
                   Shift Transition Flow:
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -187,7 +187,7 @@ export const ShiftRotationPage: React.FC = () => {
                     <select
                       value={fromShift}
                       onChange={(e) => setFromShift(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-white"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-slate-800"
                     >
                       {shifts.length === 0 ? (
                         <option value="">No shifts loaded</option>
@@ -205,7 +205,7 @@ export const ShiftRotationPage: React.FC = () => {
                     <select
                       value={toShift}
                       onChange={(e) => setToShift(e.target.value)}
-                      className="w-full bg-slate-900 border border-cyan-700/60 rounded-lg px-2 py-1.5 text-xs text-cyan-300"
+                      className="w-full bg-white border border-cyan-500 rounded-lg px-2 py-1.5 text-xs text-cyan-700 font-semibold"
                     >
                       {shifts.length === 0 ? (
                         <option value="">No shifts loaded</option>
@@ -223,8 +223,8 @@ export const ShiftRotationPage: React.FC = () => {
 
               {/* Frequency Cycle */}
               <div>
-                <label className="block text-slate-300 font-medium mb-1">Rotation Frequency</label>
-                <div className="grid grid-cols-3 gap-2 bg-slate-950/60 p-1 rounded-xl border border-slate-800">
+                <label className="block text-slate-700 font-medium mb-1">Rotation Frequency</label>
+                <div className="grid grid-cols-3 gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200">
                   {(['Weekly', 'Bi-Weekly', 'Monthly'] as const).map((c) => (
                     <button
                       key={c}
@@ -233,7 +233,7 @@ export const ShiftRotationPage: React.FC = () => {
                       className={`py-1.5 rounded-lg text-center font-medium transition-all ${
                         cycle === c
                           ? 'bg-cyan-600 text-white shadow-sm'
-                          : 'text-slate-400 hover:text-white hover:bg-slate-800/40'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
                       }`}
                     >
                       {c}
@@ -244,44 +244,44 @@ export const ShiftRotationPage: React.FC = () => {
 
               {/* Effective From */}
               <div>
-                <label className="flex items-center gap-1.5 text-slate-300 font-medium mb-1">
-                  <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                <label className="flex items-center gap-1.5 text-slate-700 font-medium mb-1">
+                  <Calendar className="w-3.5 h-3.5 text-cyan-600" />
                   Effective Rotation Date
                 </label>
                 <input
                   type="date"
                   value={effectiveFrom}
                   onChange={(e) => setEffectiveFrom(e.target.value)}
-                  className="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-3 py-2 text-white focus:border-cyan-500 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-cyan-500 focus:outline-none"
                 />
               </div>
 
               {/* Employee Selection Checklist */}
               <div>
                 <div className="flex justify-between items-center mb-1.5">
-                  <label className="flex items-center gap-1.5 text-slate-300 font-medium">
-                    <Users className="w-3.5 h-3.5 text-cyan-400" />
+                  <label className="flex items-center gap-1.5 text-slate-700 font-medium">
+                    <Users className="w-3.5 h-3.5 text-cyan-600" />
                     Assigned Employees
                   </label>
-                  <span className="text-[11px] font-mono text-cyan-400">
+                  <span className="text-[11px] font-mono text-cyan-700 font-bold">
                     {selectedEmps.size} / {employees.length} Selected
                   </span>
                 </div>
 
                 <div className="relative mb-2">
-                  <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
+                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
                   <input
                     type="text"
                     placeholder="Filter employees by name or code..."
                     value={searchEmp}
                     onChange={(e) => setSearchEmp(e.target.value)}
-                    className="w-full bg-slate-900/90 border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
+                    className="w-full bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:border-cyan-500 focus:outline-none"
                   />
                 </div>
 
-                <div className="border border-slate-800 rounded-xl bg-slate-950/50 p-2 max-h-40 overflow-y-auto space-y-1 custom-scrollbar">
+                <div className="border border-slate-200 rounded-xl bg-slate-50 p-2 max-h-40 overflow-y-auto space-y-1 custom-scrollbar">
                   {employees.length === 0 ? (
-                    <div className="text-center py-4 text-slate-500 text-xs font-sans">
+                    <div className="text-center py-4 text-slate-400 text-xs font-sans">
                       No employees available.
                     </div>
                   ) : (
@@ -301,20 +301,20 @@ export const ShiftRotationPage: React.FC = () => {
                             onClick={() => handleToggleEmp(emp.empCode)}
                             className={`flex items-center justify-between p-1.5 rounded-lg border text-xs cursor-pointer ${
                               isChecked
-                                ? 'bg-cyan-950/40 border-cyan-800/60 text-white'
-                                : 'bg-slate-900/40 border-slate-800 text-slate-400'
+                                ? 'bg-cyan-50 border-cyan-200 text-cyan-900'
+                                : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'
                             }`}
                           >
                             <div className="flex items-center gap-2">
                               {isChecked ? (
-                                <CheckSquare className="w-3.5 h-3.5 text-cyan-400" />
+                                <CheckSquare className="w-3.5 h-3.5 text-cyan-600" />
                               ) : (
-                                <Square className="w-3.5 h-3.5 text-slate-600" />
+                                <Square className="w-3.5 h-3.5 text-slate-400" />
                               )}
-                              <span className="font-mono text-cyan-300">{emp.empCode}</span>
-                              <span className="truncate max-w-[140px]">{emp.name}</span>
+                              <span className="font-mono text-cyan-700 font-semibold">{emp.empCode}</span>
+                              <span className="truncate max-w-[140px] text-slate-800 font-medium">{emp.name}</span>
                             </div>
-                            <span className="text-[10px] text-slate-500">{emp.department}</span>
+                            <span className="text-[10px] text-slate-400">{emp.department}</span>
                           </div>
                         );
                       })
@@ -326,7 +326,7 @@ export const ShiftRotationPage: React.FC = () => {
                 type="button"
                 onClick={handleApplyRotation}
                 disabled={applying}
-                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/20 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
               >
                 <Play className={`w-3.5 h-3.5 ${applying ? 'animate-spin' : ''}`} />
                 <span>{applying ? 'Applying Rotation...' : 'Execute Shift Rotation'}</span>
@@ -337,13 +337,13 @@ export const ShiftRotationPage: React.FC = () => {
 
         {/* Right: Active Rotation Rules */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="glass-card p-5 border border-slate-800 rounded-2xl bg-slate-900/70 backdrop-blur-md shadow-xl space-y-4 flex flex-col h-full">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div className="p-5 border border-slate-200 rounded-2xl bg-white shadow-sm space-y-4 flex flex-col h-full">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
-                <RotateCw className="w-4 h-4 text-cyan-400" />
-                <h2 className="text-sm font-semibold text-white">Active Rotation Cycles & Schedules</h2>
+                <RotateCw className="w-4 h-4 text-cyan-600" />
+                <h2 className="text-sm font-semibold text-slate-800">Active Rotation Cycles & Schedules</h2>
               </div>
-              <span className="text-[11px] px-2 py-0.5 rounded-full bg-cyan-900/60 text-cyan-300 font-mono border border-cyan-700/40">
+              <span className="text-[11px] px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-700 font-mono border border-cyan-200">
                 {rotations.length} Active Rules
               </span>
             </div>
@@ -351,53 +351,53 @@ export const ShiftRotationPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 bg-slate-950/40">
-                    <th className="py-2.5 px-3 font-medium">Rule ID</th>
-                    <th className="py-2.5 px-3 font-medium">Dept & Contractor</th>
-                    <th className="py-2.5 px-3 font-medium">Shift Transition</th>
-                    <th className="py-2.5 px-3 font-medium text-center">Frequency</th>
-                    <th className="py-2.5 px-3 font-medium">Effective From</th>
-                    <th className="py-2.5 px-3 font-medium text-center">Workers</th>
-                    <th className="py-2.5 px-3 font-medium text-center">Status</th>
+                  <tr className="border-b border-slate-200 text-slate-500 bg-slate-50">
+                    <th className="py-2.5 px-3 font-semibold">Rule ID</th>
+                    <th className="py-2.5 px-3 font-semibold">Dept & Contractor</th>
+                    <th className="py-2.5 px-3 font-semibold">Shift Transition</th>
+                    <th className="py-2.5 px-3 font-semibold text-center">Frequency</th>
+                    <th className="py-2.5 px-3 font-semibold">Effective From</th>
+                    <th className="py-2.5 px-3 font-semibold text-center">Workers</th>
+                    <th className="py-2.5 px-3 font-semibold text-center">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 font-mono">
+                <tbody className="divide-y divide-slate-100 font-mono">
                   {rotations.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="py-8 text-center text-slate-500 font-sans">
+                      <td colSpan={7} className="py-8 text-center text-slate-400 font-sans">
                         No shift rotation rules active.
                       </td>
                     </tr>
                   ) : (
                     rotations.map((r) => (
-                      <tr key={r.id} className="hover:bg-slate-800/30">
-                        <td className="py-2.5 px-3 text-cyan-400 font-semibold">{r.id}</td>
+                      <tr key={r.id} className="hover:bg-slate-50/80">
+                        <td className="py-2.5 px-3 text-cyan-700 font-semibold">{r.id}</td>
                         <td className="py-2.5 px-3 font-sans">
-                          <div className="font-semibold text-slate-200">{r.department}</div>
+                          <div className="font-semibold text-slate-800">{r.department}</div>
                           <div className="text-[10px] text-slate-500 truncate max-w-[150px]">
                             {r.contractor}
                           </div>
                         </td>
                         <td className="py-2.5 px-3 font-sans">
                           <div className="flex items-center gap-1.5">
-                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]">
+                            <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 text-[10px]">
                               {r.currentShift.split(' ')[0]}
                             </span>
-                            <span className="text-slate-500">→</span>
-                            <span className="px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/50 font-semibold text-[10px]">
+                            <span className="text-slate-400">→</span>
+                            <span className="px-1.5 py-0.5 rounded bg-cyan-50 text-cyan-700 border border-cyan-200 font-semibold text-[10px]">
                               {r.nextShift.split(' ')[0]}
                             </span>
                           </div>
                         </td>
                         <td className="py-2.5 px-3 text-center font-sans">
-                          <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]">
+                          <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">
                             {r.rotationCycle}
                           </span>
                         </td>
-                        <td className="py-2.5 px-3 text-slate-300">{r.effectiveFrom}</td>
-                        <td className="py-2.5 px-3 text-center text-cyan-400 font-bold">{r.empCount}</td>
+                        <td className="py-2.5 px-3 text-slate-600">{r.effectiveFrom}</td>
+                        <td className="py-2.5 px-3 text-center text-cyan-700 font-bold">{r.empCount}</td>
                         <td className="py-2.5 px-3 text-center font-sans">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800/50">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                             <CheckCircle className="w-3 h-3" />
                             {r.status}
                           </span>

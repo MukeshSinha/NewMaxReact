@@ -21,26 +21,26 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({
   return (
     <div className="glass-card glass-card-hover p-5 relative overflow-hidden">
       {/* Background Radial Glow */}
-      <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-20 blur-xl ${gradient}`} />
+      <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${gradient}`} />
 
       <div className="flex items-start justify-between relative z-10">
         <div>
-          <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{title}</p>
-          <h3 className="text-2xl font-extrabold text-white mt-1">{value}</h3>
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{title}</p>
+          <h3 className="text-2xl font-extrabold text-slate-800 mt-1">{value}</h3>
           {rollValue !== undefined && (
-            <p className="text-xs text-slate-400 mt-1 font-medium">
-              On Roll: <span className="text-indigo-400 font-semibold">{rollValue}</span>
+            <p className="text-xs text-slate-500 mt-1 font-medium">
+              On Roll: <span className="text-indigo-600 font-semibold">{rollValue}</span>
             </p>
           )}
           {trend && (
-            <span className="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="inline-block mt-2 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
               {trend}
             </span>
           )}
         </div>
 
-        <div className={`p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 shadow-inner`}>
-          <Icon className="w-6 h-6 text-indigo-400" />
+        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+          <Icon className="w-6 h-6 text-indigo-600" />
         </div>
       </div>
     </div>

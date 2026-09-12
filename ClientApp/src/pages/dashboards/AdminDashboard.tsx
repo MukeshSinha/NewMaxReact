@@ -115,14 +115,14 @@ export const AdminDashboard: React.FC = () => {
       {/* Page Title & Controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-white tracking-wide">Executive Manpower Dashboard</h1>
-          <p className="text-xs text-slate-400">Live Contractor & Department Attendance Summary</p>
+          <h1 className="text-2xl font-black text-slate-800 tracking-wide">Executive Manpower Dashboard</h1>
+          <p className="text-xs text-slate-500">Live Contractor & Department Attendance Summary</p>
         </div>
 
         <button
           onClick={loadData}
           disabled={loading}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-all"
         >
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
           <span>Refresh Data</span>
@@ -160,17 +160,17 @@ export const AdminDashboard: React.FC = () => {
       {/* Interactive Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass-card p-5">
-          <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-indigo-400" />
+          <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-indigo-600" />
             <span>Weekly Attendance Trend</span>
           </h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="day" stroke="#94a3b8" fontSize={12} />
-                <YAxis stroke="#94a3b8" fontSize={12} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', borderColor: '#475569', borderRadius: '8px' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="day" stroke="#64748b" fontSize={12} />
+                <YAxis stroke="#64748b" fontSize={12} />
+                <Tooltip contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#0f172a', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }} />
                 <Legend />
                 <Line type="monotone" dataKey="Regular" stroke="#10b981" strokeWidth={2} />
                 <Line type="monotone" dataKey="FOT" stroke="#6366f1" strokeWidth={2} />
@@ -181,17 +181,17 @@ export const AdminDashboard: React.FC = () => {
         </div>
 
         <div className="glass-card p-5">
-          <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-            <Users className="w-4 h-4 text-indigo-400" />
+          <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <Users className="w-4 h-4 text-indigo-600" />
             <span>Category Breakdown</span>
           </h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={departments.slice(0, 5)}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="dept" stroke="#94a3b8" fontSize={10} />
-                <YAxis stroke="#94a3b8" fontSize={12} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', borderColor: '#475569', borderRadius: '8px' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="dept" stroke="#64748b" fontSize={10} />
+                <YAxis stroke="#64748b" fontSize={12} />
+                <Tooltip contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#0f172a', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }} />
                 <Legend />
                 <Bar dataKey="regular" fill="#10b981" name="Regular" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="fot" fill="#6366f1" name="FOT" radius={[4, 4, 0, 0]} />
@@ -210,12 +210,12 @@ export const AdminDashboard: React.FC = () => {
           isLoading={loading || loadingContractor}
           headerControls={
             <div className="flex items-center gap-2 text-xs ml-2">
-              <span className="text-slate-400 font-medium">For other date</span>
+              <span className="text-slate-500 font-medium">For other date</span>
               <input
                 type="date"
                 value={contractorDate}
                 onChange={(e) => handleContractorDateChange(e.target.value)}
-                className="bg-slate-800/90 border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           }
@@ -223,19 +223,19 @@ export const AdminDashboard: React.FC = () => {
           exportFileName="Contractor_Today_Manpower"
           searchPlaceholder="Search contractor..."
           columns={[
-            { header: 'Contractor Name', accessor: 'ezone', className: 'font-semibold text-indigo-300' },
+            { header: 'Contractor Name', accessor: 'ezone', className: 'font-semibold text-indigo-700' },
             { header: 'Regular', accessor: 'regular', className: 'text-center font-medium' },
             { header: 'FOT', accessor: 'fot', className: 'text-center font-medium' },
             { header: 'TOA', accessor: 'toa', className: 'text-center font-medium' },
-            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-400' },
+            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-600' },
           ]}
           totalRow={
-            <tr className="bg-slate-900 font-extrabold text-white border-t-2 border-indigo-500/50">
+            <tr className="bg-slate-100 font-extrabold text-slate-900 border-t-2 border-indigo-500">
               <td className="p-3 text-right">TOTAL :</td>
-              <td className="p-3 text-center text-emerald-400">{totalContractorReg}</td>
-              <td className="p-3 text-center text-indigo-400">{totalContractorFot}</td>
-              <td className="p-3 text-center text-purple-400">{totalContractorToa}</td>
-              <td className="p-3 text-center text-amber-400">{totalContractorAll}</td>
+              <td className="p-3 text-center text-emerald-600">{totalContractorReg}</td>
+              <td className="p-3 text-center text-indigo-600">{totalContractorFot}</td>
+              <td className="p-3 text-center text-purple-600">{totalContractorToa}</td>
+              <td className="p-3 text-center text-amber-600">{totalContractorAll}</td>
             </tr>
           }
         />
@@ -246,12 +246,12 @@ export const AdminDashboard: React.FC = () => {
           isLoading={loading || loadingDept}
           headerControls={
             <div className="flex items-center gap-2 text-xs ml-2">
-              <span className="text-slate-400 font-medium">For other date</span>
+              <span className="text-slate-500 font-medium">For other date</span>
               <input
                 type="date"
                 value={deptDate}
                 onChange={(e) => handleDeptDateChange(e.target.value)}
-                className="bg-slate-800/90 border border-slate-700/80 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           }
@@ -259,19 +259,19 @@ export const AdminDashboard: React.FC = () => {
           exportFileName="Department_Today_Manpower"
           searchPlaceholder="Search department..."
           columns={[
-            { header: 'Department', accessor: 'dept', className: 'font-semibold text-indigo-300' },
+            { header: 'Department', accessor: 'dept', className: 'font-semibold text-indigo-700' },
             { header: 'Regular', accessor: 'regular', className: 'text-center font-medium' },
             { header: 'FOT', accessor: 'fot', className: 'text-center font-medium' },
             { header: 'TOA', accessor: 'toa', className: 'text-center font-medium' },
-            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-400' },
+            { header: 'Total', accessor: 'total', className: 'text-center font-bold text-emerald-600' },
           ]}
           totalRow={
-            <tr className="bg-slate-900 font-extrabold text-white border-t-2 border-indigo-500/50">
+            <tr className="bg-slate-100 font-extrabold text-slate-900 border-t-2 border-indigo-500">
               <td className="p-3 text-right">TOTAL :</td>
-              <td className="p-3 text-center text-emerald-400">{totalDeptReg}</td>
-              <td className="p-3 text-center text-indigo-400">{totalDeptFot}</td>
-              <td className="p-3 text-center text-purple-400">{totalDeptToa}</td>
-              <td className="p-3 text-center text-amber-400">{totalDeptAll}</td>
+              <td className="p-3 text-center text-emerald-600">{totalDeptReg}</td>
+              <td className="p-3 text-center text-indigo-600">{totalDeptFot}</td>
+              <td className="p-3 text-center text-purple-600">{totalDeptToa}</td>
+              <td className="p-3 text-center text-amber-600">{totalDeptAll}</td>
             </tr>
           }
         />
