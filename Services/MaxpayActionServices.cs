@@ -437,6 +437,33 @@ namespace NewMaxReact.Services
             return result;
         }
 
+        private static double GetDoubleValue(DataRow row, string colName, int colIndex)
+        {
+            object? val = null;
+            if (row.Table.Columns.Contains(colName))
+            {
+                val = row[colName];
+            }
+            else if (colIndex < row.Table.Columns.Count)
+            {
+                val = row[colIndex];
+            }
+
+            if (val == null || val == DBNull.Value) return 0.0;
+            if (double.TryParse(val.ToString(), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double res))
+            {
+                return res;
+            }
+            try
+            {
+                return Convert.ToDouble(val);
+            }
+            catch
+            {
+                return 0.0;
+            }
+        }
+
         public List<DeptwiseApiManpower> GetDeptwiseApi(DateTime ForDate)
         {
             SqlParameter[] param = new SqlParameter[1];
@@ -449,15 +476,18 @@ namespace NewMaxReact.Services
                 result = dtbl.AsEnumerable()
                     .Select(row => new DeptwiseApiManpower
                     {
-                        Dept = row.Field<string>(0),
-                        regular = row.Field<double>(1),
-                        fot = row.Field<double>(2),
-                        toa = row.Field<double>(3),
-                        Total = row.Field<double>(4),
-                        regularApi = row.Field<double>(5),
-                        fotApi = row.Field<double>(6),
-                        toaApi = row.Field<double>(7),
-                        totalApi = row.Field<double>(8)
+                        Dept = row[0]?.ToString() ?? "",
+                        regular = GetDoubleValue(row, "Regular", 1),
+                        fot = GetDoubleValue(row, "FOT", 2),
+                        toa = GetDoubleValue(row, "TOA", 3),
+                        Total = GetDoubleValue(row, "Total", 4),
+                        regularApi = GetDoubleValue(row, "RegApi", 5),
+                        fotApi = GetDoubleValue(row, "FotApi", 6),
+                        toaApi = GetDoubleValue(row, "ToaApi", 7),
+                        totalApi = GetDoubleValue(row, "TotalApi", 8),
+                        absreg = GetDoubleValue(row, "absreg", 9),
+                        absfot = GetDoubleValue(row, "absfot", 10),
+                        absNaps = GetDoubleValue(row, "absNaps", 11)
                     }).ToList<DeptwiseApiManpower>();
             }
             return result;
@@ -476,15 +506,18 @@ namespace NewMaxReact.Services
                 result = dtbl.AsEnumerable()
                     .Select(row => new DeptwiseApiManpower
                     {
-                        Dept = row.Field<string>(0),
-                        regular = row.Field<double>(1),
-                        fot = row.Field<double>(2),
-                        toa = row.Field<double>(3),
-                        Total = row.Field<double>(4),
-                        regularApi = row.Field<double>(5),
-                        fotApi = row.Field<double>(6),
-                        toaApi = row.Field<double>(7),
-                        totalApi = row.Field<double>(8)
+                        Dept = row[0]?.ToString() ?? "",
+                        regular = GetDoubleValue(row, "Regular", 1),
+                        fot = GetDoubleValue(row, "FOT", 2),
+                        toa = GetDoubleValue(row, "TOA", 3),
+                        Total = GetDoubleValue(row, "Total", 4),
+                        regularApi = GetDoubleValue(row, "RegApi", 5),
+                        fotApi = GetDoubleValue(row, "FotApi", 6),
+                        toaApi = GetDoubleValue(row, "ToaApi", 7),
+                        totalApi = GetDoubleValue(row, "TotalApi", 8),
+                        absreg = GetDoubleValue(row, "absreg", 9),
+                        absfot = GetDoubleValue(row, "absfot", 10),
+                        absNaps = GetDoubleValue(row, "absNaps", 11)
                     }).ToList<DeptwiseApiManpower>();
             }
             return result;

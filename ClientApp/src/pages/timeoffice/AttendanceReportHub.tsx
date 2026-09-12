@@ -823,6 +823,24 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
 
   // Table 4: Periodic Api
   const renderPeriodicApiTable = () => {
+    let totReg = 0, totAbsReg = 0, totRegApi = 0;
+    let totFot = 0, totAbsFot = 0, totFotApi = 0;
+    let totToa = 0, totAbsNaps = 0, totToaApi = 0;
+
+    reportRows.forEach((r) => {
+      totReg += Number(r.regular ?? r.Regular ?? 0);
+      totAbsReg += Number(r.absreg ?? r.absReg ?? 0);
+      totRegApi += Number(r.regularApi ?? r.regApi ?? r.RegularApi ?? 0);
+
+      totFot += Number(r.fot ?? r.FOT ?? 0);
+      totAbsFot += Number(r.absfot ?? r.absFot ?? 0);
+      totFotApi += Number(r.fotApi ?? r.FotApi ?? 0);
+
+      totToa += Number(r.toa ?? r.TOA ?? 0);
+      totAbsNaps += Number(r.absNaps ?? r.absnaps ?? r.AbsNaps ?? 0);
+      totToaApi += Number(r.toaApi ?? r.ToaApi ?? 0);
+    });
+
     return (
       <table ref={tableRef} className="w-full text-xs text-left border-collapse" id="tblatt">
         <thead>
@@ -846,6 +864,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             <th className="py-1 px-2 border-r border-slate-200">Present</th>
             <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
             <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-800/60 text-rose-400">Absent</th>
             <th className="py-1 px-2">API Hrs</th>
           </tr>
         </thead>
@@ -864,6 +883,22 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             </tr>
           ))}
         </tbody>
+        {reportRows.length > 0 && (
+          <tfoot>
+            <tr className="bg-slate-900/90 font-semibold text-slate-100 border-t-2 border-slate-700">
+              <td className="py-2.5 px-3 font-sans border-r border-slate-800">Total</td>
+              <td className="py-2.5 px-2 text-center text-slate-200 border-r border-slate-800/40">{totReg}</td>
+              <td className="py-2.5 px-2 text-center text-rose-400 border-r border-slate-800/40">{totAbsReg}</td>
+              <td className="py-2.5 px-2 text-center text-emerald-400 border-r border-slate-800">{totRegApi}</td>
+              <td className="py-2.5 px-2 text-center text-slate-200 border-r border-slate-800/40">{totFot}</td>
+              <td className="py-2.5 px-2 text-center text-rose-400 border-r border-slate-800/40">{totAbsFot}</td>
+              <td className="py-2.5 px-2 text-center text-amber-400 border-r border-slate-800">{totFotApi}</td>
+              <td className="py-2.5 px-2 text-center text-slate-200 border-r border-slate-800/40">{totToa}</td>
+              <td className="py-2.5 px-2 text-center text-rose-400 border-r border-slate-800/40">{totAbsNaps}</td>
+              <td className="py-2.5 px-2 text-center text-cyan-400">{totToaApi}</td>
+            </tr>
+          </tfoot>
+        )}
       </table>
     );
   };

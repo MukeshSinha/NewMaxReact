@@ -86,6 +86,9 @@ namespace NewMaxReact.Models
         public double fotApi { get; set; }
         public double toaApi { get; set; }
         public double totalApi { get; set; }
+        public double absreg { get; set; }
+        public double absfot { get; set; }
+        public double absNaps { get; set; }
     }
 
     public class EmployeeAttendance
