@@ -68,7 +68,8 @@ namespace NewMaxReact.Controllers
         [HttpGet("DepartmentwiseApi")]
         public ActionResult DepartmentwiseApi(DateTime Dt)
         {
-            var res = _attReport.GetDeptwiseApi(Dt);
+            var username = HttpContext.Session.GetString("Username") ?? "AdminUser";
+            var res = _attReport.GetDeptwiseApi(Dt,username);
             return new JsonResult(res);
         }
 

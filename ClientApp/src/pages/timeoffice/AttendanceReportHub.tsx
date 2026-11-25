@@ -213,7 +213,8 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
       if (data.length === 0) {
         toast.error('No attendance records found for the selected criteria.');
       } else {
-        toast.success(`Loaded ${data.length} records.`);
+          toast.success(`Loaded ${data.length} records.`);
+          console.log(data);
       }
     } catch {
       setReportRows([]);
@@ -420,7 +421,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
                     className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none"
                   >
                     <option value="ALL">ALL</option>
-                    <option value="Regular">Regular</option>
+                    <option value="Regular">Cont</option>
                     <option value="Fot">Fot</option>
                     <option value="Toa">Toa</option>
                   </select>
@@ -786,17 +787,18 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
               Department
             </th>
             <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-emerald-600">
-              REGULAR
+              CONT
             </th>
             <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-amber-600">
               FOT
             </th>
             <th colSpan={2} className="py-2 px-3 font-semibold text-cyan-600">
-              TOA
+              NAPS
             </th>
           </tr>
           <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 text-center text-[11px]">
-            <th className="py-1 px-2 border-r border-slate-200">Present</th>
+              <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">Absent</th>
             <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
             <th className="py-1 px-2 border-r border-slate-200">Present</th>
             <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
@@ -808,7 +810,7 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
           {reportRows.map((row, idx) => (
             <tr key={idx} className="hover:bg-slate-50/80">
               <td className="py-2 px-3 font-sans text-slate-800 border-r border-slate-200">{row.dept}</td>
-              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.regular ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.cont ?? 0}</td>
               <td className="py-2 px-2 text-center text-emerald-600 font-semibold border-r border-slate-200">{row.regularApi ?? 0}</td>
               <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.fot ?? 0}</td>
               <td className="py-2 px-2 text-center text-amber-600 font-semibold border-r border-slate-200">{row.fotApi ?? 0}</td>
@@ -825,8 +827,8 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
   const renderPeriodicApiTable = () => {
     let totReg = 0, totAbsReg = 0, totRegApi = 0;
     let totFot = 0, totAbsFot = 0, totFotApi = 0;
-    let totToa = 0, totAbsNaps = 0, totToaApi = 0;
-
+      let totToa = 0, totAbsNaps = 0, totToaApi = 0;
+      console.log(reportRows);
     reportRows.forEach((r) => {
       totReg += Number(r.regular ?? r.Regular ?? 0);
       totAbsReg += Number(r.absreg ?? r.absReg ?? 0);
@@ -848,20 +850,22 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
             <th rowSpan={2} className="py-2.5 px-3 font-semibold text-left border-r border-slate-200">
               Department / Date
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-emerald-600">
+            <th colSpan={3} className="py-2 px-3 font-semibold border-r border-slate-200 text-emerald-600">
               CONT
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold border-r border-slate-200 text-amber-600">
+            <th colSpan={3} className="py-2 px-3 font-semibold border-r border-slate-200 text-amber-600">
               FOT
             </th>
-            <th colSpan={2} className="py-2 px-3 font-semibold text-cyan-600">
+            <th colSpan={3} className="py-2 px-3 font-semibold text-cyan-600">
               NAPS
             </th>
           </tr>
           <tr className="border-b border-slate-200 text-slate-500 bg-slate-50 text-center text-[11px]">
             <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">Absent</th>
             <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
             <th className="py-1 px-2 border-r border-slate-200">Present</th>
+            <th className="py-1 px-2 border-r border-slate-200">Absent</th>
             <th className="py-1 px-2 border-r border-slate-200">API Hrs</th>
             <th className="py-1 px-2 border-r border-slate-200">Present</th>
             <th className="py-1 px-2 border-r border-slate-800/60 text-rose-400">Absent</th>
@@ -874,11 +878,14 @@ export const AttendanceReportHub: React.FC<Props> = ({ reportType: propReportTyp
               <td className="py-2 px-3 font-sans text-slate-800 border-r border-slate-200">
                 {row.dept || row.attDate}
               </td>
-              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.regular ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.cont ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.absreg ?? 0}</td>
               <td className="py-2 px-2 text-center text-emerald-600 font-semibold border-r border-slate-200">{row.regularApi ?? 0}</td>
               <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.fot ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.absfot ?? 0}</td>
               <td className="py-2 px-2 text-center text-amber-600 font-semibold border-r border-slate-200">{row.fotApi ?? 0}</td>
               <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.toa ?? 0}</td>
+              <td className="py-2 px-2 text-center text-slate-600 border-r border-slate-200">{row.absNaps ?? 0}</td>
               <td className="py-2 px-2 text-center text-cyan-600 font-semibold">{row.toaApi ?? 0}</td>
             </tr>
           ))}

@@ -36,7 +36,19 @@ export interface Employee {
   bankAccount?: string;
   dojoStatus?: string;
 }
-
+export interface EmployeeSearch {
+    empCode: string;
+    empName: string;
+    ezn: string;
+    dept: string;
+    category: string;
+    joiningDate: string;
+    status: string;
+    mobile?: string;
+    aadhar?: string;
+    bankAccount?: string;
+    dojoStatus?: string;
+}
 export interface AttendanceRecord {
   empCode: string;
   name: string;
@@ -87,18 +99,10 @@ export interface RecentAttendanceItem {
 }
 
 export interface WeekoffTransferRecord {
-  id: string;
-  empCode: string;
-  empName: string;
-  department: string;
-  contractor: string;
-  currentWeekoff: string;
-  requestedWeekoff: string;
-  fromDate: string;
-  toDate: string;
-  reason: string;
-  status: 'Pending' | 'Approved' | 'Rejected';
-  appliedDate: string;
+  EmpCode: string;
+  FromDate: string;
+  UpToDate: string;
+  Remarks: string;
 }
 
 export interface ForgetPunchRecord {

@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NewMaxReact.Models;
 using NewMaxReact.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +28,7 @@ builder.Services.AddScoped<IContractor, ContractorActions>();
 builder.Services.AddScoped<IOrgStructure, OrgStructureActions>();
 builder.Services.AddScoped<IMastersImport, MastersImportActions>();
 builder.Services.AddScoped<ITempEmp, TempEmpActions>();
-
+builder.Services.AddScoped<IWoTransfer, AttendanceProcessActions>();
 // Add SPA static files
 builder.Services.AddSpaStaticFiles(configuration =>
 {
@@ -46,7 +47,18 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+app.Use(async (context, next) =>
+{
+    Console.WriteLine(
+        $"Incoming Request: {context.Request.Method} {context.Request.Path}"
+    );
 
+    await next();
+
+    Console.WriteLine(
+        $"Response Status: {context.Response.StatusCode}"
+    );
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 if (!app.Environment.IsDevelopment())

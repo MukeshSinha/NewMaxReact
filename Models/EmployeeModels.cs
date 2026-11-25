@@ -168,6 +168,8 @@ namespace NewMaxReact.Models
         public DateTime? Ldt { get; set; } = null;
         public double? marks { get; set; }
         public string? sts { get; set; }
+        public DateTime? createOn { get; set; }
+        public DateTime? allocateDate { get; set; }
     }
 
     public class PromotionResultDTO

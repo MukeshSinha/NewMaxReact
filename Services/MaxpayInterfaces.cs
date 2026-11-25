@@ -39,7 +39,7 @@ namespace NewMaxReact.Services
         List<CategoryAttendance> TodayCategoryWiseHeadCount();
         List<DeptWiseCategoryWiseAttendance> DeptCategoryWiseHeadCount(DateTime forDate, string userName);
         List<ShiftWiseAttendance> GetShiftWiseHeadCount(DateTime ForDate, string Etype, string userName);
-        List<DeptwiseApiManpower> GetDeptwiseApi(DateTime ForDate);
+        List<DeptwiseApiManpower> GetDeptwiseApi(DateTime ForDate, string UserName);
         List<DeptwiseApiManpower> GetPeriodicApi(DateTime ForDate, DateTime UptoDate, string UserName);
         DataTable DeptWisePlanVsActual(DateTime forDate, string UserName);
         DataTable DailyDeptAbsenteeism(DateTime forDate);
@@ -86,5 +86,10 @@ namespace NewMaxReact.Services
         int SaveTempEmpHandover(List<PromotionResultDTO> pdto, DateTime PassDate);
         DataTable getDojoEmployee(DateTime dt);
         byte[] GenerateDojoCretificate(DataTable model);
+    }
+
+    public interface IWoTransfer
+    {   
+       string SaveWoffTransfer(WoffTransfer woffTransfer);
     }
 }

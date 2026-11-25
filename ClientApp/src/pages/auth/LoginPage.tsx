@@ -99,7 +99,7 @@ export const LoginPage: React.FC = () => {
       <div className="w-full max-w-md glass-card p-8 relative z-10 space-y-6 border border-slate-200 shadow-xl bg-white">
         {/* Brand Header */}
         <div className="text-center space-y-2">
-          <img src="/maxpay-logo.svg" alt="MaxPay Logo" className="w-16 h-16 mx-auto rounded-2xl shadow-md shadow-indigo-600/20 object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/mLogo.ico" alt="MaxPay Logo" className="w-16 h-16 mx-auto rounded-2xl shadow-md shadow-indigo-600/20 object-contain hover:scale-105 transition-transform duration-300" />
           <h1 className="text-2xl font-extrabold text-slate-800 tracking-wide">MaxPay App</h1>
           <p className="text-xs text-slate-500">Contractor & Workforce Management Suite</p>
         </div>

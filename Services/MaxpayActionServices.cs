@@ -7,7 +7,7 @@ using NewMaxReact.Models;
 
 namespace NewMaxReact.Services
 {
-    public class AttendanceProcessActions : IAttendanceProcess
+    public class AttendanceProcessActions : IAttendanceProcess,IWoTransfer
     {
         public int PunchProcess(PunchProcessRequest punchreq)
         {
@@ -50,6 +50,22 @@ namespace NewMaxReact.Services
                 Console.WriteLine($"PunchProcess Error: {ex.Message}");
             }
             return 1;
+        }
+        public string SaveWoffTransfer(WoffTransfer woffTransfer)
+        {
+            SqlParameter[] param = new SqlParameter[4];
+            param[0] = Data.AddParameter("@EmpCode", woffTransfer.EmpCode, SqlDbType.NVarChar, 10);
+            param[1] = Data.AddParameter("@FrmDt", woffTransfer.FromDate, SqlDbType.SmallDateTime, 10);
+            param[2] = Data.AddParameter("@ToDt", woffTransfer.UpToDate, SqlDbType.SmallDateTime, 10);
+            param[3] = Data.AddParameter("@Rmk", woffTransfer.Remarks, SqlDbType.NVarChar, 500);
+            DataTable dtbl = Data.ExecuteDbProcedure("Save_WoTransfer", param);
+            string result = "0";
+            if (dtbl != null && dtbl.Rows.Count > 0)
+            {
+                result = dtbl.Rows[0].Field<string>(0) ?? "0";
+
+            }
+            return result;
         }
     }
 
@@ -202,35 +218,44 @@ namespace NewMaxReact.Services
             var Result = new List<Employees>();
             if (Dtbl != null && Dtbl.Rows.Count > 0)
             {
-                Result = Dtbl.AsEnumerable().Select(r => new Employees
+                try
                 {
-                    Ezn = r.Field<string>("Ezone"),
-                    loc = r.Field<string>("loc"),
-                    EmpCategory = r.Field<string>("Category"),
-                    EmpType = r.Field<string>("Etype"),
-                    EmpName = r.Field<string>("EmpName"),
-                    FatherName = r.Field<string>("FName"),
-                    Dob = r.Field<DateTime>("Dob"),
-                    Doj = r.Field<DateTime>("Doj"),
-                    saltype = r.Field<string>("SalaryType"),
-                    costcentre = r.Field<string>("CostCentre"),
-                    dept = r.Field<string>("Department"),
-                    desig = r.Field<string>("Desig"),
-                    grd = r.Field<string>("Grade"),
-                    Mop = r.Field<string>("Mop"),
-                    contact = r.Field<string>("Contact"),
-                    refr = r.Field<string>("ref"),
-                    Aadhar = r.Field<string>("Aadhar"),
-                    Pan = r.Field<string>("Pan"),
-                    Uan = r.Field<string>("UAN"),
-                    Esi = r.Field<string>("ESI"),
-                    Dispencry = r.Field<string>("Dispencery"),
-                    LeaveDate = r.Field<DateTime?>("LeaveDay"),
-                    BankName = r.Field<string>("BankName"),
-                    BankAcno = r.Field<string>("BankAcno"),
-                    IFSC = r.Field<string>("IFSC"),
-                    Cardno = r.Field<string>("Cardno"),
-                }).ToList<Employees>();
+                    Result = Dtbl.AsEnumerable().Select(r => new Employees
+                    {
+                        EmpCode = r.Field<string>("EmpCode"),
+                        Ezn = r.Field<string>("Ezone"),
+                        loc = r.Field<string>("loc"),
+                        EmpCategory = r.Field<string>("Category"),
+                        EmpType = r.Field<string>("Etype"),
+                        EmpName = r.Field<string>("EmpName"),
+                        FatherName = r.Field<string>("FName"),
+                        Dob = r.Field<DateTime>("Dob"),
+                        Doj = r.Field<DateTime>("Doj"),
+                        saltype = r.Field<string>("SalaryType"),
+                        costcentre = r.Field<string>("CostCentre"),
+                        dept = r.Field<string>("MainDepartment"),
+                        desig = r.Field<string>("Desig"),
+                        grd = r.Field<string>("Grade"),
+                        Mop = r.Field<string>("Mop"),
+                        contact = r.Field<string>("Contact"),
+                        refr = r.Field<string>("ref"),
+                        Aadhar = r.Field<string>("Aadhar"),
+                        Pan = r.Field<string>("Pan"),
+                        Uan = r.Field<string>("UAN"),
+                        Esi = r.Field<string>("ESI"),
+                        Dispencry = r.Field<string>("Dispencery"),
+                        LeaveDate = r.Field<DateTime?>("LeaveDay"),
+                        BankName = r.Field<string>("BankName"),
+                        BankAcno = r.Field<string>("BankAcno"),
+                        IFSC = r.Field<string>("IFSC"),
+                        Cardno = r.Field<string>("Cardno"),
+                    }).ToList<Employees>();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"SearchEmployee Error: {ex.Message}");
+                }
             }
             return Result;
         }
@@ -464,11 +489,11 @@ namespace NewMaxReact.Services
             }
         }
 
-        public List<DeptwiseApiManpower> GetDeptwiseApi(DateTime ForDate)
+        public List<DeptwiseApiManpower> GetDeptwiseApi(DateTime ForDate, string UserName)
         {
-            SqlParameter[] param = new SqlParameter[1];
+            SqlParameter[] param = new SqlParameter[2];
             param[0] = Data.AddParameter("@Fdt", ForDate, SqlDbType.SmallDateTime, 10);
-
+            param[1] = Data.AddParameter("@uid", UserName, SqlDbType.NVarChar, 50);
             DataTable dtbl = Data.ExecuteDbProcedure("sp_DeptWiseAPIManpower", param);
             List<DeptwiseApiManpower> result = new List<DeptwiseApiManpower>();
             if (dtbl != null && dtbl.Rows.Count > 0)
@@ -477,7 +502,7 @@ namespace NewMaxReact.Services
                     .Select(row => new DeptwiseApiManpower
                     {
                         Dept = row[0]?.ToString() ?? "",
-                        regular = GetDoubleValue(row, "Regular", 1),
+                        Cont = GetDoubleValue(row, "Cont", 1),
                         fot = GetDoubleValue(row, "FOT", 2),
                         toa = GetDoubleValue(row, "TOA", 3),
                         Total = GetDoubleValue(row, "Total", 4),
@@ -507,7 +532,7 @@ namespace NewMaxReact.Services
                     .Select(row => new DeptwiseApiManpower
                     {
                         Dept = row[0]?.ToString() ?? "",
-                        regular = GetDoubleValue(row, "Regular", 1),
+                        Cont = GetDoubleValue(row, "Regular", 1),
                         fot = GetDoubleValue(row, "FOT", 2),
                         toa = GetDoubleValue(row, "TOA", 3),
                         Total = GetDoubleValue(row, "Total", 4),
@@ -600,28 +625,100 @@ namespace NewMaxReact.Services
             param[1] = Data.AddParameter("@EDate", ToDate, SqlDbType.SmallDateTime, 10);
             param[2] = Data.AddParameter("@Ezone", Ezone, SqlDbType.NVarChar, 50);
             DataTable dtbl = Data.ExecuteDbProcedure("[Get_MusterRoll]", param);
+            //List<musterRoll> result = new List<musterRoll>();
+            //if (dtbl != null && dtbl.Rows.Count > 0)
+            //{
+            //    result = dtbl.AsEnumerable()
+            //        .Select(row => new musterRoll
+            //        {
+            //            EmpCode = row.Field<string>(0),
+            //            Name = row.Field<string>(1),
+            //            Dept = row.Field<string>(2),
+            //            Category = row.Field<string>(3),
+            //            dt1 = row.Field<string>(4),
+            //            dt2 = row.Field<string>(5),
+            //            dt3 = row.Field<string>(6),
+            //            dt4 = row.Field<string>(7),
+            //            dt5 = row.Field<string>(8),
+            //            dt6 = row.Field<string>(9),
+            //            dt7 = row.Field<string>(10),
+            //            dt8 = row.Field<string>(11),
+            //            dt9 = row.Field<string>(12),
+            //            dt10 = row.Field<string>(13),
+            //            dt11 = row.Field<string>(14),
+            //            dt12 = row.Field<string>(15),
+            //            dt13 = row.Field<string>(16),
+            //            dt14 = row.Field<string>(17),
+            //            dt15 = row.Field<string>(18),
+            //            dt16 = row.Field<string>(19),
+            //            dt17 = row.Field<string>(20),
+            //            dt18 = row.Field<string>(21),
+            //            dt19 = row.Field<string>(22),
+            //            dt20 = row.Field<string>(23),
+            //            dt21 = row.Field<string>(24),
+            //            dt22 = row.Field<string>(25),
+            //            dt23 = row.Field<string>(26),
+            //            dt24 = row.Field<string>(27),
+            //            dt25 = row.Field<string>(28),
+            //            dt26 = row.Field<string>(29),
+            //            dt27 = row.Field<string>(30),
+            //            dt28 = row.Field<string>(31),
+            //            dt29 = row.Field<string>(32),
+            //            dt30 = row.Field<string>(33),
+            //            dt31 = row.Field<string>(34)
+
+            //        }).ToList<musterRoll>();
+            //}
+            //return result;
             List<musterRoll> result = new List<musterRoll>();
+
             if (dtbl != null && dtbl.Rows.Count > 0)
             {
+                int colCount = dtbl.Columns.Count;
+
+                // Safe getter: returns null if the column doesn't exist
+                string Get(DataRow row, int index) =>
+                    index < colCount && !row.IsNull(index) ? row[index].ToString() : null;
+
                 result = dtbl.AsEnumerable()
                     .Select(row => new musterRoll
                     {
-                        EmpCode = row.Field<string>(0),
-                        Name = row.Field<string>(1),
-                        Dept = row.Field<string>(2),
-                        Category = row.Field<string>(3),
-                        dt1 = row.Field<string>(4),
-                        dt2 = row.Field<string>(5),
-                        dt3 = row.Field<string>(6),
-                        dt4 = row.Field<string>(7),
-                        dt5 = row.Field<string>(8),
-                        dt6 = row.Field<string>(9),
-                        dt7 = row.Field<string>(10),
-                        dt8 = row.Field<string>(11),
-                        dt9 = row.Field<string>(12),
-                        dt10 = row.Field<string>(13),
-                        dt11 = row.Field<string>(14),
-                    }).ToList<musterRoll>();
+                        EmpCode = Get(row, 0),
+                        Name = Get(row, 1),
+                        Dept = Get(row, 2),
+                        Category = Get(row, 3),
+                        dt1 = Get(row, 4),
+                        dt2 = Get(row, 5),
+                        dt3 = Get(row, 6),
+                        dt4 = Get(row, 7),
+                        dt5 = Get(row, 8),
+                        dt6 = Get(row, 9),
+                        dt7 = Get(row, 10),
+                        dt8 = Get(row, 11),
+                        dt9 = Get(row, 12),
+                        dt10 = Get(row, 13),
+                        dt11 = Get(row, 14),
+                        dt12 = Get(row, 15),
+                        dt13 = Get(row, 16),
+                        dt14 = Get(row, 17),
+                        dt15 = Get(row, 18),
+                        dt16 = Get(row, 19),
+                        dt17 = Get(row, 20),
+                        dt18 = Get(row, 21),
+                        dt19 = Get(row, 22),
+                        dt20 = Get(row, 23),
+                        dt21 = Get(row, 24),
+                        dt22 = Get(row, 25),
+                        dt23 = Get(row, 26),
+                        dt24 = Get(row, 27),
+                        dt25 = Get(row, 28),
+                        dt26 = Get(row, 29),
+                        dt27 = Get(row, 30),
+                        dt28 = Get(row, 31),
+                        dt29 = Get(row, 32),
+                        dt30 = Get(row, 33),
+                        dt31 = Get(row, 34)
+                    }).ToList();
             }
             return result;
         }
@@ -639,7 +736,7 @@ namespace NewMaxReact.Services
                     .Select(row => new DeptwiseApiManpower
                     {
                         Dept = row.Field<string>(0),
-                        regular = row.Field<double>(1),
+                        Cont = row.Field<double>(1),
                         fot = row.Field<double>(2),
                         toa = row.Field<double>(3),
                         Total = row.Field<double>(4),
@@ -665,7 +762,7 @@ namespace NewMaxReact.Services
                     .Select(row => new DeptwiseApiManpower
                     {
                         Dept = row.Field<string>(0),
-                        regular = row.Field<double>(1),
+                        Cont = row.Field<double>(1),
                         fot = row.Field<double>(2),
                         toa = row.Field<double>(3),
                         Total = row.Field<double>(4),
@@ -1104,7 +1201,8 @@ namespace NewMaxReact.Services
                         TempCode = r.Field<string>("empCode") ?? "",
                         EmpName = r.Field<string>("EmpName") ?? "",
                         FatherName = r.Table.Columns.Contains("FName") ? r.Field<string>("FName") : "",
-                        Ezn = r.Table.Columns.Contains("Ezone") ? r.Field<string>("Ezone") : ""
+                        Ezn = r.Table.Columns.Contains("Ezone") ? r.Field<string>("Ezone") : "",
+                        Doj = r.Table.Columns.Contains("Doj") ? r.Field<DateTime>("Doj") : DateTime.MinValue
                     }).ToList();
                 }
             }
@@ -1129,7 +1227,10 @@ namespace NewMaxReact.Services
                         FatherName = r.Table.Columns.Contains("FName") ? r.Field<string>("FName") : "",
                         Ezn = r.Table.Columns.Contains("Ezone") ? r.Field<string>("Ezone") : "",
                         sts = r.Table.Columns.Contains("result") ? r.Field<string>("result") : "",
-                        marks = r.Table.Columns.Contains("mark") && r["mark"] != DBNull.Value ? Convert.ToDouble(r["mark"]) : 0
+                        marks = r.Table.Columns.Contains("mark") && r["mark"] != DBNull.Value ? Convert.ToDouble(r["mark"]) : 0,
+                        Doj = r.Table.Columns.Contains("Doj") ? r.Field<DateTime>("Doj") : DateTime.MinValue,
+                        createOn = r.Table.Columns.Contains("createOn") && r["createOn"] != DBNull.Value ? Convert.ToDateTime(r["createOn"]) : DateTime.MinValue,
+                        allocateDate = r.Table.Columns.Contains("allocateDate") && r["allocateDate"] != DBNull.Value ? Convert.ToDateTime(r["allocateDate"]) : DateTime.MinValue
                     }).ToList();
                 }
             }
@@ -1203,7 +1304,8 @@ namespace NewMaxReact.Services
                 param[1] = DataLayer.AddParameter("@TmpCode", DBNull.Value, SqlDbType.NVarChar, 10);
                 param[2] = DataLayer.AddParameter("@Choice", "8", SqlDbType.NVarChar, 3);
                 DataTable dtbl = DataLayer.ExecuteDbProcedure("get_DojoEmployee", param);
-                if (dtbl != null) return dtbl;
+                 if (dtbl != null) 
+                   return dtbl;
             }
             catch { }
             return new DataTable();
@@ -1211,4 +1313,6 @@ namespace NewMaxReact.Services
 
         public byte[] GenerateDojoCretificate(DataTable model) => Array.Empty<byte>();
     }
+
+
 }

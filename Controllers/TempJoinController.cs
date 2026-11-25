@@ -83,7 +83,7 @@ namespace NewMaxReact.Controllers
             try
             {
                 var data = _tempEmp.getDojoEmployee(Dt);
-
+                Console.WriteLine(data);
                 if (data == null || data.Rows.Count == 0)
                     return Content("No data found for selected date.");
 

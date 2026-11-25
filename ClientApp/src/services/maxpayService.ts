@@ -3,7 +3,8 @@ import {
   ManpowerSummary,
   ContractorManpower,
   DeptManpower,
-  Employee,
+    Employee,
+    EmployeeSearch,
   AttendanceRecord,
   LeaveBalanceItem,
   LeaveRequestData,
@@ -56,7 +57,16 @@ export const maxpayService = {
     } catch {
       return [];
     }
-  },
+    },
+    SearchEmployees: async (empcd?: string): Promise<EmployeeSearch[]> => {
+      try {
+          const res = await axios.get(`${API_BASE}/EmployeesMaster/SearchEmployee`, { params: { EmpCode: empcd } });
+          console.log(res);
+            return Array.isArray(res.data) ? res.data : [];
+        } catch {
+            return [];
+        }
+   },
 
   getAttendanceRecords: async (date?: string, dept?: string, shift?: string): Promise<AttendanceRecord[]> => {
     try {
@@ -250,7 +260,7 @@ export const maxpayService = {
   },
 
   submitWeekoffTransfer: async (data: Partial<WeekoffTransferRecord>) => {
-    const res = await axios.post(`${API_BASE}/TimeOffice/WeekoffTransfer`, data);
+      const res = await axios.post(`${API_BASE}/TimeOffice/WeekoffTransfer`, data);
     return res.data;
   },
 

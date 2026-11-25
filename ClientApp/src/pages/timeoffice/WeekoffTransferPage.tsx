@@ -41,14 +41,16 @@ export const WeekoffTransferPage: React.FC = () => {
   };
 
   const handleLookupEmp = async () => {
-    if (!empCode) return;
-    const employees = await maxpayService.getEmployees();
-    const found = employees.find((e) => e.empCode.toLowerCase() === empCode.toLowerCase());
+      if (!empCode) return;
+      const employees = await maxpayService.SearchEmployees(empCode);
+      console.log(employees);
+      const found = employees.find((e) => e.empCode.toLowerCase() === empCode.toLowerCase());
+      console.log(found);
     if (found) {
-      setEmpName(found.name);
-      setDepartment(found.department);
-      setContractor(found.contractor);
-      toast.success(`Loaded details for ${found.name}`);
+        setEmpName(found.empName);
+        setDepartment(found.dept);
+        setContractor(found.ezn);
+        toast.success(`Loaded details for ${found.empName}`);
     } else {
       toast.error(`Employee ${empCode} not found`);
     }
@@ -72,18 +74,11 @@ export const WeekoffTransferPage: React.FC = () => {
     setSubmitting(true);
     try {
       const newRecord: WeekoffTransferRecord = {
-        id: `WO-${Math.floor(8000 + Math.random() * 1999)}`,
-        empCode,
-        empName,
-        department,
-        contractor,
-        currentWeekoff,
-        requestedWeekoff,
-        fromDate,
-        toDate,
-        reason,
-        status: 'Pending',
-        appliedDate: new Date().toISOString().split('T')[0],
+          EmpCode: empCode,
+          FromDate: fromDate,
+          UpToDate: toDate,
+          Remarks: reason,
+         
       };
 
       await maxpayService.submitWeekoffTransfer(newRecord);
@@ -97,30 +92,24 @@ export const WeekoffTransferPage: React.FC = () => {
     }
   };
 
-  const handleUpdateStatus = (id: string, newStatus: 'Approved' | 'Rejected') => {
-    setTransfers((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, status: newStatus } : item))
-    );
-    toast.success(`Request ${id} marked as ${newStatus}`);
-  };
+   
 
   const filteredTransfers = useMemo(() => {
     return transfers.filter(
-      (t) =>
-        t.empCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.empName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.reason.toLowerCase().includes(searchQuery.toLowerCase())
+        (t) =>
+            t.EmpCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
+
+            t.Remarks.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [transfers, searchQuery]);
 
-  const stats = useMemo(() => {
-    return {
-      total: transfers.length,
-      approved: transfers.filter((t) => t.status === 'Approved').length,
-      pending: transfers.filter((t) => t.status === 'Pending').length,
-    };
-  }, [transfers]);
+  //const stats = useMemo(() => {
+  //  return {
+  //    total: transfers.length,
+  //    approved: transfers.filter((t) => t.status === 'Approved').length,
+  //    pending: transfers.filter((t) => t.status === 'Pending').length,
+  //  };
+  //}, [transfers]);
 
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -149,7 +138,7 @@ export const WeekoffTransferPage: React.FC = () => {
         <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs text-slate-500 font-medium">Total Transfer Requests</p>
-            <h3 className="text-2xl font-bold text-slate-800 mt-1 font-mono">{stats.total}</h3>
+            <h3 className="text-2xl font-bold text-slate-800 mt-1 font-mono"></h3>
           </div>
           <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-200 flex items-center justify-center">
             <ArrowLeftRight className="w-5 h-5" />
@@ -159,7 +148,7 @@ export const WeekoffTransferPage: React.FC = () => {
         <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs text-slate-500 font-medium">Approved Transfers</p>
-            <h3 className="text-2xl font-bold text-emerald-600 mt-1 font-mono">{stats.approved}</h3>
+            <h3 className="text-2xl font-bold text-emerald-600 mt-1 font-mono"> </h3>
           </div>
           <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center">
             <CheckCircle className="w-5 h-5" />
@@ -169,7 +158,7 @@ export const WeekoffTransferPage: React.FC = () => {
         <div className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs text-slate-500 font-medium">Pending Approvals</p>
-            <h3 className="text-2xl font-bold text-amber-600 mt-1 font-mono">{stats.pending}</h3>
+            <h3 className="text-2xl font-bold text-amber-600 mt-1 font-mono"> </h3>
           </div>
           <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center">
             <Clock className="w-5 h-5" />
@@ -344,103 +333,57 @@ export const WeekoffTransferPage: React.FC = () => {
             </div>
 
             {/* Records Table */}
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs text-left">
-                <thead>
-                  <tr className="border-b border-slate-200 text-slate-500 bg-slate-50">
-                    <th className="py-2.5 px-3 font-semibold">Req ID</th>
-                    <th className="py-2.5 px-3 font-semibold">Employee</th>
-                    <th className="py-2.5 px-3 font-semibold">Transfer Shift</th>
-                    <th className="py-2.5 px-3 font-semibold">Effective Period</th>
-                    <th className="py-2.5 px-3 font-semibold">Reason</th>
-                    <th className="py-2.5 px-3 font-semibold text-center">Status</th>
-                    <th className="py-2.5 px-3 font-semibold text-center">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 font-mono">
-                  {filteredTransfers.length === 0 ? (
-                    <tr>
-                      <td colSpan={7} className="text-center py-8 text-slate-400 font-sans">
-                        No weekoff transfer requests match your filter.
-                      </td>
-                    </tr>
-                  ) : (
-                    filteredTransfers.map((req) => (
-                      <tr key={req.id} className="hover:bg-slate-50/80">
-                        <td className="py-2.5 px-3 text-indigo-600 font-semibold">{req.id}</td>
-                        <td className="py-2.5 px-3 font-sans">
-                          <div className="font-medium text-slate-800">{req.empName}</div>
-                          <div className="text-[10px] text-slate-500 font-mono">
-                            {req.empCode} • {req.department}
-                          </div>
-                        </td>
-                        <td className="py-2.5 px-3 font-sans">
-                          <div className="flex items-center gap-1.5">
-                            <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 text-[10px]">
-                              {req.currentWeekoff}
-                            </span>
-                            <span className="text-slate-400">→</span>
-                            <span className="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 font-semibold text-[10px]">
-                              {req.requestedWeekoff}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-2.5 px-3 text-[11px] text-slate-600">
-                          {req.fromDate} <span className="text-slate-400">to</span> {req.toDate}
-                        </td>
-                        <td className="py-2.5 px-3 font-sans text-slate-600 max-w-xs truncate">
-                          {req.reason}
-                        </td>
-                        <td className="py-2.5 px-3 text-center font-sans">
-                          <span
-                            className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
-                              req.status === 'Approved'
-                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                : req.status === 'Rejected'
-                                ? 'bg-rose-50 text-rose-700 border border-rose-200'
-                                : 'bg-amber-50 text-amber-700 border border-amber-200'
-                            }`}
-                          >
-                            {req.status === 'Approved' ? (
-                              <CheckCircle className="w-3 h-3" />
-                            ) : req.status === 'Rejected' ? (
-                              <AlertCircle className="w-3 h-3" />
-                            ) : (
-                              <Clock className="w-3 h-3" />
-                            )}
-                            {req.status}
-                          </span>
-                        </td>
-                        <td className="py-2.5 px-3 text-center font-sans">
-                          {req.status === 'Pending' ? (
-                            <div className="flex items-center justify-center gap-1">
-                              <button
-                                type="button"
-                                onClick={() => handleUpdateStatus(req.id, 'Approved')}
-                                title="Approve"
-                                className="p-1 rounded-md bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
-                              >
-                                <Check className="w-3.5 h-3.5" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => handleUpdateStatus(req.id, 'Rejected')}
-                                title="Reject"
-                                className="p-1 rounded-md bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200"
-                              >
-                                <X className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          ) : (
-                            <span className="text-[10px] text-slate-400 italic">Completed</span>
-                          )}
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
+
+                      {/* Records Table */}
+                      <div className="overflow-x-auto">
+                          <table className="w-full text-xs text-left">
+                              <thead>
+                                  <tr className="border-b border-slate-200 text-slate-500 bg-slate-50">
+                                      <th className="py-2.5 px-3 font-semibold">Employee Code</th>
+                                      <th className="py-2.5 px-3 font-semibold">From Date</th>
+                                      <th className="py-2.5 px-3 font-semibold">Upto Date</th>
+                                      <th className="py-2.5 px-3 font-semibold">Remarks</th>
+                                  </tr>
+                              </thead>
+
+                              <tbody className="divide-y divide-slate-100 font-mono">
+                                  {filteredTransfers.length === 0 ? (
+                                      <tr>
+                                          <td
+                                              colSpan={4}
+                                              className="text-center py-8 text-slate-400 font-sans"
+                                          >
+                                              No weekoff transfer requests match your filter.
+                                          </td>
+                                      </tr>
+                                  ) : (
+                                      filteredTransfers.map((req, index) => (
+                                          <tr
+                                              key={`${req.EmpCode}-${req.FromDate}-${index}`}
+                                              className="hover:bg-slate-50/80"
+                                          >
+                                              <td className="py-2.5 px-3 text-indigo-600 font-semibold">
+                                                  {req.EmpCode}
+                                              </td>
+
+                                              <td className="py-2.5 px-3 text-slate-600">
+                                                  {req.FromDate}
+                                              </td>
+
+                                              <td className="py-2.5 px-3 text-slate-600">
+                                                  {req.UpToDate}
+                                              </td>
+
+                                              <td className="py-2.5 px-3 font-sans text-slate-600 max-w-xs">
+                                                  {req.Remarks}
+                                              </td>
+                                          </tr>
+                                      ))
+                                  )}
+                              </tbody>
+                          </table>
+                      </div>
+
           </div>
         </div>
       </div>

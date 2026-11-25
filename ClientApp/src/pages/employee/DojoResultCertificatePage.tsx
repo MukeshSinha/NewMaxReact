@@ -7,7 +7,7 @@ interface DojoResultRecord {
   empCode: string;
   empName: string;
   fatherName: string;
-  doj: string;
+  Doj: string;
   ezn: string; // Contractor Name
   sts: string; // Result status / % of Marks
   marks: string; // Marks / Result
@@ -25,6 +25,20 @@ export const DojoResultCertificatePage: React.FC = () => {
     fetchDojoResults(dojDate);
   }, []);
 
+    const formatDate = (date?: string | Date) => {
+        if (!date) return '';
+
+        const d = new Date(date);
+
+        if (isNaN(d.getTime())) return '';
+
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+
+        return `${day}/${month}/${year}`;
+    };
+
   const fetchDojoResults = async (dateVal: string) => {
     if (!dateVal) {
       toast.error('Please select a Date of Join');
@@ -40,7 +54,7 @@ export const DojoResultCertificatePage: React.FC = () => {
             empCode: d.empCode || d.EmpCode || d.tmpCode || '',
             empName: d.empName || d.EmpName || '',
             fatherName: d.fatherName || d.FatherName || d.fName || '',
-            doj: d.doj ? (d.doj.includes('T') ? d.doj.split('T')[0] : d.doj) : dateVal,
+            Doj: d.Doj ? (d.Doj.includes('T') ? d.Doj.split('T')[0] : d.Doj) : dateVal,
             ezn: d.ezn || d.Ezn || d.contractorName || d.CompName || '',
             sts: d.sts || d.Sts || d.status || 'Pass',
             marks: d.marks || d.Marks || d.score || '60',
@@ -80,22 +94,22 @@ export const DojoResultCertificatePage: React.FC = () => {
       recordsToPrint.forEach((rec, index) => {
         if (index > 0) {
           doc.addPage();
-        }
-
+          }
+          console.log(rec);
         // Title Header
         doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(30, 41, 59);
-        doc.text('SHRIRAM PISTONS : GHAZIABAD', 105, 20, { align: 'center' });
+          doc.text('SPR Auto Technologies Ltd : GHAZIABAD', 105, 20, { align: 'center' });
 
         doc.setFontSize(13);
         doc.text('DOJO CENTER', 105, 28, { align: 'center' });
 
         doc.setFontSize(11);
-        doc.text('New Joinee Associates - Handover Slip', 105, 35, { align: 'center' });
+          doc.text('New Joinee Associates - DOJO Certificate', 105, 35, { align: 'center' });
 
         doc.setFontSize(10);
-        doc.text(`Sr. No : ${index + 1}`, 180, 42, { align: 'right' });
+          doc.text(`DOJO/NJ/ASS./REC : ${index + 1}`, 180, 42, { align: 'right' });
 
         // Divider Line
         doc.setLineWidth(0.5);
@@ -134,17 +148,17 @@ export const DojoResultCertificatePage: React.FC = () => {
         // Row 5: Start Date & End Date
         y += 12;
         doc.setFont('helvetica', 'normal');
-        doc.text(`Start Date : ${rec.doj}      End Date : ${rec.createOn || rec.doj}`, 20, y);
+          doc.text(`Start Date :${formatDate(rec.Doj)}      End Date : ${formatDate(rec.createOn) || formatDate(rec.createOn)}`, 20, y);
         doc.line(15, y + 4, 195, y + 4);
 
-        // Row 6: Written Test & Pass Marks
+        // Row 6: Written Test & Pass Marks ghg
         y += 12;
         doc.text(`Written Test : ${rec.sts || 'Pass'}     Pass Marks (%) : ${rec.marks || '-'}`, 20, y);
         doc.line(15, y + 4, 195, y + 4);
 
         // Row 7: Date of Allocation
         y += 12;
-        doc.text(`Date of Allocation in Dept / Plant : ${rec.allocateDate || rec.doj}`, 20, y);
+          doc.text(`Date of Allocation in Dept / Plant : ${formatDate(rec.allocateDate) || formatDate(rec.allocateDate)}`, 20, y);
 
         // Footnotes
         doc.setFontSize(9);
@@ -218,7 +232,7 @@ export const DojoResultCertificatePage: React.FC = () => {
                       <td className="p-3 border-r border-slate-200 font-mono font-medium text-slate-800">{item.empCode}</td>
                       <td className="p-3 border-r border-slate-200 text-slate-700">{item.empName}</td>
                       <td className="p-3 border-r border-slate-200 text-slate-700">{item.fatherName}</td>
-                      <td className="p-3 border-r border-slate-200 text-center text-slate-600">{item.doj}</td>
+                      <td className="p-3 border-r border-slate-200 text-center text-slate-600">{item.Doj}</td>
                       <td className="p-3 border-r border-slate-200 text-center text-slate-700 font-medium">{item.ezn}</td>
                       <td className="p-3 border-r border-slate-200 text-center font-bold text-emerald-600">{item.sts}</td>
                       <td className="p-3 border-r border-slate-200 text-center font-bold text-indigo-600">{item.marks}</td>

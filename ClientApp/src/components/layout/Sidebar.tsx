@@ -24,10 +24,11 @@ import {
   CalendarRange,
   UserCheck,
   FileUp,
-  ArrowRight
+  ArrowRight,
+  User
 } from 'lucide-react';
 import { useAppStore } from '../../store/appStore';
-
+import { useAuthStore } from '../../store/authStore';
 interface SubMenuItem {
   title: string;
   path: string;
@@ -44,7 +45,9 @@ interface MenuItem {
 
 export const Sidebar: React.FC = () => {
   const { sidebarOpen } = useAppStore();
-  const location = useLocation();
+    const location = useLocation();
+    const { user } = useAuthStore();
+    const role = user?.role ?? 'Admin';
   const [openSubmenu, setOpenSubmenu] = useState<string | null>('Time Office');
 
   const toggleSubmenu = (title: string) => {
@@ -74,7 +77,8 @@ export const Sidebar: React.FC = () => {
       title: 'Employees',
       icon: Users,
       children: [
-        { title: 'Dojo Join(Temp)', path: '/employee/temp-joining' },
+          { title: 'Dojo Join(Temp)', path: '/employee/temp-joining' },
+          { title: 'Promote Temp. Employee', path: '/employee/promote' },
         { title: 'New Joining', path: '/employee/new', icon: UserPlus },
         { title: 'Profile', path: '/employee/profile', icon: Users },
         { title: '', path: '', isDivider: true },
@@ -138,6 +142,98 @@ export const Sidebar: React.FC = () => {
     },
   ];
 
+
+    //const departmentAllowedMenus: Record<string, string[]> = {
+    //    Dashboard: ['Department Dashboard'],
+    //    'Employees': [
+    //        'Profile',
+    //        'Download Employees',
+    //    ],
+    //    'Time Office': [
+             
+    //        'Attendance Report',
+    //        'Attendance Verification',
+    //    ],
+    //    Charts: ['Manpower Analytics', 'Attendance Trends'],
+    //};
+
+    //const visibleMenuItems: MenuItem[] =
+    //    role === 'Department'
+    //        ? menuItems
+    //            .filter((item) =>
+    //                Object.keys(departmentAllowedMenus).includes(item.title)
+    //            )
+    //            .map((item) => ({
+    //                ...item,
+    //                children: item.children?.filter((child) =>
+    //                    departmentAllowedMenus[item.title]?.includes(child.title)
+    //                ),
+    //            }))
+    //            .filter((item) => item.children && item.children.length > 0)
+    //        : menuItems;
+    const roleAllowedMenus: Record<string, Record<string, string[]>> = {
+
+        Department: {
+            Dashboard: ['Department Dashboard'],
+
+            Employees: [
+                'Profile',
+                'Download Employees',
+            ],
+
+            'Time Office': [
+                'Attendance Report',
+                'Attendance Verification',
+            ],
+
+            Charts: [
+                'Manpower Analytics',
+                'Attendance Trends',
+            ],
+        },
+
+        Contractor: {
+            Dashboard: [
+                'Contractor Dashboard',
+            ],
+
+            Employees: [
+                'Profile',
+                'Download Employees',
+            ],
+
+            'Time Office': [
+                'Attendance Report',
+                'Attendance Verification',
+                'Weekoff Transfer',
+            ],
+        },
+
+        Dojo: {
+            Dashboard: [
+                'Dojo Dashboard',
+            ],
+
+            Employees: [
+                'Promote Temp. Employee',
+                'Dojo Certificate',
+            ],
+        },
+    };
+    const allowedMenus = roleAllowedMenus[role];
+
+    const visibleMenuItems: MenuItem[] = allowedMenus
+        ? menuItems
+            .filter((item) => allowedMenus[item.title])
+            .map((item) => ({
+                ...item,
+                children: item.children?.filter((child) =>
+                    allowedMenus[item.title].includes(child.title)
+                ),
+            }))
+            .filter((item) => item.children && item.children.length > 0)
+        : menuItems;
+
   if (!sidebarOpen) return null;
 
   return (
@@ -155,7 +251,7 @@ export const Sidebar: React.FC = () => {
 
       {/* Menu List */}
       <nav className="flex-1 overflow-y-auto p-3 space-y-1 custom-scrollbar">
-        {menuItems.map((item) => {
+        {visibleMenuItems.map((item) => {
           const Icon = item.icon;
           const isSubOpen = openSubmenu === item.title;
           const hasActiveChild = item.children?.some((child) => location.pathname === child.path);

@@ -27,8 +27,8 @@ export const Header: React.FC = () => {
         </button>
 
         <div className="flex items-center gap-2.5">
-          <img src="/logo.svg" alt="MaxPay Logo" className="h-8 object-contain" />
-          <span className="font-bold text-slate-800 tracking-wide text-sm hidden sm:inline-block">MaxPay Contractor Management</span>
+        <img src="/mLogo.ico" alt="MaxPay Logo" className="h-8 object-contain" />
+        <span className="font-bold text-slate-800 tracking-wide text-sm hidden sm:inline-block">MaxPay Contractor Management</span>
         </div>
 
         {/* Global Search Bar */}

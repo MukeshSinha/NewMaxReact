@@ -78,7 +78,7 @@ namespace NewMaxReact.Models
     public class DeptwiseApiManpower
     {
         public string? Dept { get; set; }
-        public double regular { get; set; }
+        public double Cont { get; set; }
         public double fot { get; set; }
         public double toa { get; set; }
         public double Total { get; set; }
@@ -145,4 +145,13 @@ namespace NewMaxReact.Models
         public string? dt30 { get; set; }
         public string? dt31 { get; set; }
     }
+    public class WoffTransfer
+    {
+        public string EmpCode { get; set; }
+        public DateTime? FromDate { get; set; }
+        public DateTime? UpToDate { get; set; }
+        public string? Remarks { get; set; }
+
+    }
+
 }
